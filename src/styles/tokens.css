@@ -1,0 +1,48 @@
+:root {
+  /* Colors */
+  --color-bg-primary: #050505;
+  --color-bg-secondary: #101010;
+  --color-bg-tertiary: #171717;
+
+  --color-text-primary: #F5F5F5;
+  --color-text-secondary: #A0A0A0;
+  --color-text-muted: rgb(102, 100, 100);
+
+  --color-border: #262626;
+  --color-border-light: #333333;
+
+  --color-accent: #FFFFFF;
+  --color-success: #8FD694;
+  --color-error: #FF6B6B;
+
+  /* Surface text colors (used for light surfaces such as cards) */
+  --color-surface-text: #0b0b0b;
+  --color-surface-text-muted: #666666;
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+  --space-11: 12rem;
+
+  /* Motion */
+  --motion-fast: 180ms;
+  --motion-medium: 400ms;
+  --motion-slow: 800ms;
+  --motion-cinematic: 1200ms;
+
+  /* Grid */
+  --page-max-width: 1400px;
+  /* Section spacing tokens */
+  --space-section: 4rem;
+  --space-section-large: 6rem;
+  --space-content: 1.5rem;
+  --space-tight: 0.5rem;
+}
