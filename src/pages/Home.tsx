@@ -238,7 +238,7 @@ export default function Home() {
         {/* Editor's Picks: editorial selection of high-value machines */}
         {editorPicks && editorPicks.length > 0 && (
           <section style={{ marginTop: 28 }} aria-label="Escolha do editor">
-            <h3 className="display">ESCOLHA DO EDITOR</h3>
+            <h3 className="display">ESCOLHA DA SEMANA</h3>
             <div
               style={{
                 marginTop: 12,
