@@ -90,7 +90,7 @@ export default function Brands(){
                 <h2 className="card-title" style={{ fontSize: '1.6rem', color: 'black' }}>{featured[0].name}</h2>
                 {featured[0].description ? <div className="muted card-description" style={{ marginTop: 8 }}>{featured[0].description}</div> : null}
                 <div style={{ marginTop: 12 }}>
-                   <Link to={`/brands/${featured[0].slug}`} style={{ color: 'black' }} className="meta motion-link">EXPLORAR MARCA →</Link>
+                   <Link to={`/brands/${featured[0].slug}`} style={{ color: 'var(--color-shine)', fontWeight: '700' }} className="meta motion-link">EXPLORAR MARCA →</Link>
                    <span className="muted" style={{ marginLeft: 12 }}>{counts[featured[0].name] || 0} carros</span>
                 </div>
               </div>
