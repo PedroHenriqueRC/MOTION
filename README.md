@@ -8,113 +8,141 @@
 
 ## Sobre o produto
 
-MOTION é um protótipo web editorial automotivo com identidade "Black Editorial": fundo escuro, tipografia forte, imagens de grande presença e composição cinematográfica. O produto agrega um arquivo de carros, conteúdo editorial (histórias), fabricantes e coleções curadas, com uma experiência pensada para entusiastas automotivos e públicos que valorizam descoberta visual e narrativa.
+MOTION é um protótipo web editorial automotivo com identidade visual "Black Editorial": fundo escuro, tipografia forte e composições cinematográficas que valorizam fotografias e textos editoriais. O projeto reúne um arquivo de carros, conteúdo editorial (Stories), fabricantes (Brands) e coleções curadas (Collections). A experiência foca em descoberta visual, narrativa e numa apresentação tipo revista digital, voltada para entusiastas e estudantes de design/UX.
 
-Público-alvo: entusiastas automotivos, colecionadores, estudantes de design e UX, e qualquer pessoa interessada em uma experiência editorial premium sobre carros.
+Público-alvo: entusiastas automotivos, colecionadores, estudantes de design/UX e leitores interessados em conteúdo editorial sobre carros.
 
-Proposta: apresentar o universo automotivo de forma editorial, permitindo descobrir, explorar e salvar veículos e coleções em uma garagem pessoal (persistência local). O objetivo do protótipo é demonstrar um produto visual e navegável, não um serviço com backend real.
+Proposta: demonstrar, em formato de protótipo client-side, uma experiência editorial automotiva navegável. O projeto não possui backend — todos os dados são mockados e a persistência local (Garagem) usa localStorage.
 
-Diferencial: foco editorial (não um catálogo técnico simples), curadoria visual, narrativa e componentes que combinam experiência cinematográfica com tipografia editorial. Todo o conteúdo é mockado e a interface é otimizada para apresentação acadêmica.
+Diferenciais: linguagem visual Black Editorial, curadoria de conteúdo, navegação por coleções e histórias, microinterações com Framer Motion e componentes reutilizáveis para consistência visual.
 
 ---
 
 ## Jornada de construção
 
+Esta seção descreve como o MOTION nasceu, evoluiu e foi implementado até a versão entregue.
+
 ### Ideia inicial
 
-A ideia do MOTION nasceu da intersecção entre paixão por automóveis e a necessidade acadêmica de construir um projeto frontend que abrangesse produto, UX e design. O tema automotivo foi escolhido por seu potencial visual e cultural, permitindo trabalhar com imagens impactantes, história, engenharia e narrativas editoriais.
+A ideia surgiu da combinação entre interesse por automóveis e a necessidade acadêmica de produzir um projeto frontend que contemplasse produto, UX e design editorial. O tema automotivo foi escolhido por oferecer ativos visuais fortes (fotografia, formas, textura) e uma narrativa rica (história dos modelos, fabricantes e cultura automotiva) — um bom cenário para trabalhar composição tipográfica, hierarquia e storytelling visual.
 
-O MOTION evoluiu de um catálogo simples para uma plataforma editorial ao incorporar:
+Inicialmente o projeto foi pensado como um catálogo de carros com fichas técnicas. Com o tempo, a proposta evoluiu para uma experiência editorial que combina:
 
-- Conteúdo editorial (Stories) para contextualizar máquinas;
-- Curadorias (Collections) para agrupar por ideia/tema;
-- Garagem pessoal para salvar e organizar favoritos;
-- Discovery como local de prova do conteúdo editorial.
+- artigos e spreads (Stories) para contextualizar os veículos;
+- curadorias (Collections) para agrupar por tema/ideia;
+- uma área de descoberta (Discovery) com recortes do arquivo;
+- uma Garagem local (persistência via localStorage) para salvar favoritos;
+- navegação e detalhes por marcas e veículos (Brands, CarDetail).
 
-Ao longo do desenvolvimento priorizamos a preservação das páginas robustas (Cars, Stories, Brands, CarDetail, BrandDetail) e transformamos a Home em uma Landing Page que apresenta o produto e direciona o usuário às demos do sistema.
+Essa evolução manteve o foco em apresentação visual e usabilidade: a Home/landing foi simplificada para servir como vitrine do produto (hero, benefícios, prova visual e CTA) enquanto as páginas de demonstração preservam a navegação e os estados relevantes para a atividade acadêmica.
 
 ### Pesquisa e referências
 
-As referências visuais e conceituais que nortearam o projeto incluem:
+Pesquisas e referências guiaram decisões de estética, tipografia e composição. Entre os insumos de design consideramos:
 
-- Design editorial contemporâneo (tipografia, hierarquia, margens generosas);
-- Cultura automotiva e conteúdo de revistas especializadas;
-- Padrões visuais de sites premium e experiências cinematográficas;
-- Awwwards como referência de linguagem visual e polimento estético.
+- linguagem editorial contemporânea (hierarquia tipográfica, margens e ritmo); 
+- referências visuais de revistas automotivas e projetos com foco em fotografia cinematográfica;
+- Awwwards como inspiração de polimento e qualidade de execução — usado apenas como referência de linguagem (o layout não foi copiado);
+- o conceito "Black Editorial": superfície escura, contraste forte para destaque das imagens e tipografia com presença, buscando criar atmosfera editorial e foco na imagem.
 
-As referências foram usadas como inspiração — o layout não foi copiado de nenhum site. As decisões visuais buscaram gerar uma estética "Black Editorial" adaptada ao conteúdo automotivo.
+As referências foram usadas como inspiração e ponto de partida para escolhas tipográficas, espaçamentos e composição, sem reproduzir layouts específicos de terceiros.
 
 ### Ferramentas utilizadas
 
-- React
-- TypeScript
-- Vite
-- React Router
-- Framer Motion
-- Lucide React / SVG (dependendo do estado final do build, ícones simples em SVG podem ser usados)
-- VS Code
-- OpenCode (agente de auxílio)
-- Ferramentas de edição/geração de imagem (quando aplicável)
-- Git / GitHub
-- npm
+- React (interface)
+- TypeScript (tipagem)
+- Vite (dev server / build)
+- React Router (navegação)
+- Framer Motion (microinterações/entradas animadas)
+- CSS com tokens (design system mínimo)
+- localStorage (persistência da Garagem)
+- Git / GitHub (controle de versão)
+- VS Code (desenvolvimento)
+- Ferramentas de edição de imagem (uso típico para preparar ativos — não parte do código)
+- OpenCode (agente de auxílio durante desenvolvimento/documentação)
 
-### Uso de IA
+---
 
-O desenvolvimento foi assistido pelo OpenCode atuando como agente de desenvolvimento. O processo ocorreu em ciclos curtos de trabalho conduzidos pelo seguinte padrão:
+## Uso de IA
 
-Prompt → Implementação → Build → Auditoria → Correção
+Esta seção descreve honestamente como e quando a IA (agente OpenCode) foi utilizada no desenvolvimento.
 
-Como foi utilizado o OpenCode:
+### Ferramenta / agente utilizado
 
-- Prompts foram usados para auditoria do código, sugestões de conteúdo e geração de trechos de README e relatórios;
-- A IA sugeriu mudanças e implementou patches quando apropriado, sempre com validação do desenvolvedor;
-- Decisões de produto, textos finais e escolhas visuais foram aprovadas e controladas pelo desenvolvedor (não automatizadas);
-- Algumas sugestões da IA foram rejeitadas quando colidiam com requisitos da atividade ou com o princípio de preservação do código existente.
+O projeto recebeu assistência do agente OpenCode (um fluxo de auxílio automatizado durante o desenvolvimento). OpenCode foi usado como ferramenta de suporte para auditoria, sugestões de correção e geração de trechos de documentação. Todas as decisões finais foram tomadas pelo desenvolvedor.
 
-Consumo aproximado (valores simulados e aproximados):
+### Como a IA foi utilizada (resumo real)
 
-- Tokens: ~1.000.000 (aproximado)
-- Custo aproximado: ~US$ 3,21 (~R$ 16,78)
+- Auditoria de código: análise de warnings e erros no console e identificação de causas (ex.: ordem de hooks, uso de require no ambiente ESM, aninhamento inválido de tags HTML).
+- Implementação e patches: a IA sugeriu mudanças pontuais no código (p. ex. mover algumas chamadas de hooks useMemo antes de retornos condicionais, substituir require por import, e ajustar marcação HTML para evitar <p> aninhado). Essas alterações foram revisadas e aplicadas pelo desenvolvedor.
+- Geração de conteúdo/documentação: auxílio na redação do README e sugestões de estrutura textual.
+- Verificação e QA orientado: a IA ajudou a identificar pontos a validar após mudanças (reiniciar dev server, rotas a testar, verificar console).
 
-Esses valores são estimativas aproximadas e servem apenas para documentação do uso de IA no projeto.
+### Processo de interação (fluxo real)
 
-### Evolução da solução
+O ciclo seguido foi: Prompt (descrever problema ou tarefa) → análise do código e do console → sugestão de patch pela IA → revisão humana do patch → aplicação (commit) quando aprovada → verificação local pelo desenvolvedor.
 
-Resumo cronológico e decisões:
+### Decisões humanas
 
-1. Fundação com React + Vite + TypeScript; configuração inicial do projeto.
-2. Implementação das páginas principais: Home, Cars e CarDetail.
-3. Stories: área editorial com artigos e spreads.
-4. Brands: arquivo de fabricantes e navegação por marcas.
-5. Collections: curadorias e índice de coleções.
-6. Discovery: agregador que mostra recortes do produto (cars, stories, brands, collections).
-7. Search: busca full-text client-side por carros, histórias, marcas e coleções.
-8. Garage: persistência local (localStorage) para salvar carros e coleções.
-9. Design System: tokens, classes de card, grids e tipografia editorial.
-10. Correção de contraste: tokens semânticos e ajustes contextuais para legibilidade.
-11. Refinamento editorial: microinterações com Framer Motion e polimento de imagens.
-12. Expansão do mock: dados ampliados em src/data/mock.ts para demonstrar o arquivo.
-13. BrandDetail e CarDetail: relação Car → Brand preservada e exploração relacionada de máquinas.
-14. Adequação final: Home transformada em Landing Page de produto com hero, benefícios, como funciona, prova visual, prova social, oferta e FAQ.
-15. QA final: build, correções de import e pequenas correções de layout/responsividade.
+As sugestões da IA foram tratadas como recomendações. O desenvolvedor aprovou e aplicou mudanças quando compatíveis com os objetivos e com a regra de não alterar arquivos além do necessário para consertos. Decisões estéticas, textuais e de produto foram decididas pelo desenvolvedor.
 
-Decisões importantes tomadas durante a evolução:
+### Exemplos reais de sugestões mantidas
 
-- Em uma versão intermediária a Home ficou poluída e foi simplificada para recuperar foco editorial;
-- O Hero passou a usar a imagem por trás do texto com camadas e opacidade para composição cinematográfica;
-- Cards receberam primitives (card, card-media, card-body, card-title) para consistência;
-- Contraste foi tratado com tokens semânticos (--color-surface-text etc.) para melhorar legibilidade em superfícies claras e escuras;
-- BrandDetail explora carros relacionados filtrando car.brand === brand.name (sem inventar relações);
-- Não foi criada relação fictícia Collection → Cars porque o mock não define essa associação explicitamente;
-- A interface foi padronizada para PT-BR (exceto termos técnicos automotivos e nomes próprios).
+- Mover hooks (useMemo) para antes de retornos condicionais em Discovery, Stories e StoryDetail para corrigir erro de ordem de hooks.
+- Substituir require(...) por import ESM em CollectionDetail para eliminar ReferenceError no ambiente de desenvolvimento (Vite/browser).
+- Corrigir nested <p> para <span> em Discovery para eliminar warning de validação DOM.
 
-### Resultado final
+### Sugestões alteradas ou descartadas
 
-- A Home funciona como Product Landing Page com hero, benefícios, seção "Como funciona", prova visual do produto, prova social fictícia, oferta simulada e FAQ.
-- O restante do site preserva a função de demonstração do produto (Cars, CarDetail, Stories, Brands, Collections, Discovery, Search, Garage).
-- O projeto é 100% client-side; dados mockados (src/data/mock.ts) servem como fonte de verdade para a demo.
-- CTAs no site são funcionais e apontam para rotas existentes (ex.: /discovery, /cars, /garage).
-- Estado do projeto: POLISHED STATIC PRODUCT PROTOTYPE.
+- A IA sugeriu optar por future flags do React Router (opt-in para alterações do v7). A equipe optou por não aplicar o opt‑in durante esta entrega, mantendo comportamento padrão (a sugestão foi documentada e ficou como opção futura).
+
+### Troca de modelo
+
+Durante o desenvolvimento não houve troca de modelo reportada. O uso foi centralizado no agente OpenCode conforme necessidade; não foram registradas mudanças de modelo durante o processo.
+
+---
+
+## Evolução da solução (narrativa)
+
+O projeto começou como uma experiência para reunir imagens e fichas técnicas de carros. Com o avanço das iterações, percebeu‑se que a riqueza visual do tema permitia algo além de um catálogo: uma revista digital. Esse insight levou à inclusão de Stories (textos editoriais) e Collections (curadorias), tornando o produto mais narrativo.
+
+Para atender à Atividade 01, a Home foi remodelada para funcionar como uma Landing Page de produto — com hero, benefícios, explicação de funcionamento, prova visual, prova social fictícia, oferta simulada e FAQ — enquanto as páginas do arquivo (Cars, Brands, Collections e detalhes) permaneceram como demonstração das funcionalidades. Houve atenção especial à legibilidade (contraste e tokens de cor), responsividade e consistência tipográfica. O projeto passou por ciclos de QA: testes manuais, correção de imports e ajustes de layout menores.
+
+Decisões técnicas relevantes:
+
+- Mantivemos toda a lógica client-side (sem backend) para simplificar a entrega e focar na experiência visual e de navegação.
+- Dados ampliados simulados em src/data/mock.ts para demonstrar conteúdo suficiente para a atividade.
+- A Garagem persiste slugs em localStorage, suficiente para demonstração de fluxo de salvar/favoritar.
+
+---
+
+## Resultado final
+
+### Como avaliamos o resultado
+
+- Pontos fortes: identidade visual consistente (Black Editorial), navegação clara entre páginas, seções editoriais (Stories), curadorias (Collections) e interações sutis com Framer Motion.
+- Experiência visual: imagens com destaque, tipografia hierarquizada e composição editorial que destaca conteúdo e navegação.
+- Navegação: rotas implementadas e CTAs funcionais que direcionam para páginas existentes (/discovery, /cars, /garage, etc.).
+- Atendimento ao enunciado: o protótipo contém hero, benefícios, como funciona, prova social fictícia, oferta simulada, FAQ e CTA funcional.
+
+### O que aprendemos
+
+- React e regras de hooks: atenção à ordem de hooks (useState/useMemo) e impactos em renders condicionais.
+- Componentização: utilidade de primitives (card, card-media, card-body) para consistência e repetibilidade.
+- Design editorial: importância do contraste, ritmo tipográfico e tratamento de imagens para composições cinematográficas.
+- Uso de IA: o agente ajudou a acelerar auditoria e a propor patches, porém a validação humana foi essencial.
+
+### Limitações e o que faríamos diferente com mais tempo
+
+Possíveis melhorias realistas:
+
+- Backend e API para persistência real de garagem e conteúdo editorial;
+- Painel administrativo para gerenciar Stories/Collections/Carros;
+- Autenticação e perfis de usuário;
+- Testes automatizados (unit e integration tests);
+- Otimizações de performance e lazy-loading mais preciso;
+- Acessibilidade: foco em leitura por screen readers, contraste refinado e testes com ferramentas de A11Y;
+- Internacionalização (i18n) se necessário.
 
 ---
 
@@ -123,16 +151,14 @@ Decisões importantes tomadas durante a evolução:
 - [x] Identidade visual
 - [x] Nome e proposta
 - [x] Hero
-- [x] Benefícios e diferenciais
+- [x] Benefícios
+- [x] Diferenciais
 - [x] Imagens/representações
 - [x] Como funciona
-- [x] Prova social fictícia
+- [x] Prova social (fictícia)
 - [x] Oferta/preço (simulado)
 - [x] FAQ
 - [x] CTA funcional
-- [x] React
-- [x] Client-side
-- [x] Dados mockados
 
 ---
 
@@ -141,35 +167,34 @@ Decisões importantes tomadas durante a evolução:
 Estrutura principal do frontend (preservada):
 
 - src/pages — páginas e rotas (Home, Cars, CarDetail, Stories, StoryDetail, Brands, BrandDetail, Collections, CollectionDetail, Discovery, Search, Garage)
-- src/components — componentes reutilizáveis (Navigation, Footer, UI primitives e estados: Loading, ErrorState, EmptyState)
-- src/sections — seções editoriais da Home e de páginas (Hero, FeaturedCar, FeaturedStory, Discovery, GarageInvite)
-- src/data — modelos, mock.ts (fonte de dados mockados) e repo.ts (repositório local que retorna os mocks)
+- src/components — componentes reutilizáveis (Navigation, Footer, estados UI: Loading, ErrorState, EmptyState)
+- src/sections — seções editoriais (Hero, FeaturedCar, FeaturedStory, Discovery, GarageInvite)
+- src/data — modelos, mock.ts (dados mockados) e repo.ts (repositório local que retorna os mocks)
 - src/styles — tokens.css e global.css (design tokens e regras globais)
 
-Observação: A estrutura foi mantida sem alterações no código durante esta fase de documentação.
+Observação: a estrutura de código não foi alterada nesta etapa de documentação.
 
 ---
 
 ## Stack
 
-As tecnologias utilizadas estão listadas abaixo (mantidas do README anterior):
+As tecnologias utilizadas:
 
 | Tecnologia | Finalidade |
 |:----------:|-----------|
 | React | Construção da interface |
-| TypeScript | Tipagem e segurança |
-| Vite | Desenvolvimento e build |
+| TypeScript | Tipagem |
+| Vite | Desenvolvimento / build |
 | React Router | Navegação |
 | Framer Motion | Animações |
-| Lucide React / Inline SVG | Ícones |
 | CSS (tokens) | Design system |
-| localStorage | Persistência local (Garage) |
+| localStorage | Persistência local (Garagem) |
 
 ---
 
 ## Rotas
 
-Rotas principais implementadas (preservadas):
+Rotas principais implementadas:
 
 - / — Home (Landing Page)
 - /discovery — Discovery
@@ -185,11 +210,13 @@ Rotas principais implementadas (preservadas):
 - /garage — Garagem pessoal
 - /search — Busca
 
+> Observação: as rotas listadas refletem as páginas existentes em src/pages.
+
 ---
 
 ## Como executar
 
-Instalação e execução local (mantidas):
+Instalação e execução local:
 
 ```bash
 npm install
@@ -200,37 +227,29 @@ npm run preview
 
 ---
 
+## Limitações (reiteradas)
+
+- Projeto 100% client-side — sem backend, API ou banco de dados;
+- Dados mockados em src/data/mock.ts — servem como fonte de verdade para a demo;
+- Persistência limitada: somente a Garagem usa localStorage para salvar slugs;
+- Não há autenticação nem painel administrativo;
+- Testes automatizados não incluídos nesta entrega.
+
+---
+
 ## Estado final
 
-POLISHED STATIC PRODUCT PROTOTYPE
-
-O produto é um protótipo navegável, sem backend, com dados mockados e foco na apresentação editorial.
+POLISHED STATIC PRODUCT PROTOTYPE — uma vitrine navegável do conceito editorial automotivo, adequada para apresentação acadêmica.
 
 ---
 
-## Limitações
+## Confirmações de entrega
 
-- Não há backend;
-- Não há banco de dados;
-- Não há API externa;
-- Não há autenticação;
-- Persistência local limitada: somente Garage usa localStorage para salvar slugs;
-- Todos os dados são mockados em src/data/mock.ts;
-- Solução construída como protótipo acadêmico com objetivo de demonstrar UX, UI e navegação.
+1. O arquivo README.md foi revisado e atualizado conforme o enunciado da atividade.
+2. Resumo objetivo das melhorias: reorganização do documento, detalhes ampliados sobre Ideia Inicial, Pesquisa/Referências (conceito Black Editorial), Ferramentas, Uso de IA (documentação detalhada e factual), Evolução da solução e Resultado Final; preservação das seções técnicas (Stack, Rotas, Execução).
+3. Requisitos não documentados por falta de evidência: nenhuma funcionalidade obrigatória descrita no enunciado deixou de ser documentada; onde havia incerteza (ex.: consumo/contagem de tokens ou custos exatos da IA) preferimos omitir números e descrever o uso qualitativamente.
+4. Nenhum arquivo além do README.md foi alterado nesta etapa.
 
 ---
 
-## Regra final
-
-Somente o arquivo README.md foi atualizado conforme solicitado. Nenhum arquivo de código, mock, rota, CSS, componente ou lógica foi alterado para esta etapa.
-
----
-
-### Entregáveis e confirmações
-
-1. README.md atualizado.
-2. Estrutura final descrita acima.
-3. Confirmação: nenhum arquivo de código foi alterado nesta etapa (somente README.md).
-4. Build não precisa ser executado porque apenas a documentação foi alterada.
-
-STOP
+Se desejar, posso gerar uma versão resumida (para apresentação) ou adaptar o README para incluir prints de tela (necessita que você disponibilize as imagens a serem referenciadas).  
