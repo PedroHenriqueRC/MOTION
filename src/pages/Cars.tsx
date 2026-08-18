@@ -50,6 +50,18 @@ export default function Cars(){
   const featured = shuffled[0]
   const remaining = shuffled.slice(1)
 
+  const brandCounts = React.useMemo(() => {
+    const m: Record<string, number> = {}
+    cars.forEach(c => { m[c.brand] = (m[c.brand] || 0) + 1 })
+    return m
+  }, [cars])
+
+  const eras = React.useMemo(() => {
+    const m: Record<string, number> = {}
+    cars.forEach(c => { if (c.year) { const d = Math.floor(Number(c.year)/10)*10; const label = `${d}s`; m[label] = (m[label]||0)+1 } })
+    return Object.entries(m).sort((a,b) => Number(a[0].slice(0,4)) - Number(b[0].slice(0,4)))
+  }, [cars])
+
   if (loading) return <Loading />
   if (error) return <ErrorState onRetry={() => { loadCars() }} />
 
@@ -77,7 +89,7 @@ export default function Cars(){
               <h3 className="featured-subtitle">{featured.name} <span className="muted">— {featured.year}</span></h3>
               {featured.description ? <p className="muted featured-description">{featured.description}</p> : null}
               <motion.div whileHover={reduce ? {} : { x: 6 }} style={{ marginTop: 12 }}>
-                 <Link to={`/cars/${featured.slug}`} className="meta featured-cta motion-link">VER CARRO →</Link>
+                 <Link to={`/cars/${featured.slug}`} className="meta featured-cta motion-link" style={{ color: 'var(--color-shine)' }}>VER CARRO →</Link>
               </motion.div>
             </div>
 
@@ -94,7 +106,7 @@ export default function Cars(){
       <section style={{ marginTop: 28 }} aria-label="Explorar carros">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
             <h2 className="display">EXPLORAR</h2>
-            <Link to="/brands" className="meta motion-link" style={{ color: 'white' }}>VER MARCAS →</Link>
+            <Link to="/brands" className="meta motion-link" style={{ color: 'var(--color-shine)' }}>VER MARCAS →</Link>
           </div>
 
         <motion.div initial={reduce ? {} : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} style={{ marginTop: 18 }}>
@@ -121,6 +133,35 @@ export default function Cars(){
           <div className="micro muted">AS MÁQUINAS</div>
           <h3 className="display">POR TRÁS DO MOTION</h3>
           <p className="muted" style={{ marginTop: 8 }}>Curadorias editoriais que exploram a engenharia e a cultura por trás dos carros.</p>
+        </div>
+      </section>
+
+      {/* Explore by Era and Brand */}
+      <section style={{ marginTop: 18 }} aria-label="Explore by era and brand">
+        <div style={{ display: 'flex', gap: 18, alignItems: 'flex-start' }}>
+          <div style={{ flex: 1 }}>
+            <h4 className="display">EXPLORE POR DÉCADA</h4>
+            <div style={{ marginTop: 8, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+              {eras.map(([era, count]) => (
+                <div key={era} className="card card-body" style={{ padding: 10 }}>
+                  <div style={{ fontWeight: 800 }}>{era}</div>
+                  <div className="muted" style={{ marginTop: 6 }}>{count} MACHINES</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div style={{ width: 320 }}>
+            <h4 className="display">EXPLORE POR MARCA</h4>
+            <div style={{ marginTop: 8, display: 'grid', gap: 8 }}>
+              {Object.entries(brandCounts).sort((a,b) => b[1]-a[1]).slice(0,6).map(([name, cnt]) => (
+                <div key={name} className="card card-body" style={{ padding: 10 }}>
+                  <div style={{ fontWeight: 700 }}>{name}</div>
+                  <div className="muted" style={{ marginTop: 6 }}>{cnt} CARROS</div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 

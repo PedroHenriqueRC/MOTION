@@ -6,6 +6,7 @@ import Loading from '../components/ui/Loading'
 import ErrorState from '../components/ui/ErrorState'
 import EmptyState from '../components/ui/EmptyState'
 import { motion, useReducedMotion } from 'framer-motion'
+import { collections as mockCollections } from '../data/mock'
 
 export default function CollectionDetail(){
   const { slug } = useParams()
@@ -66,6 +67,30 @@ export default function CollectionDetail(){
           <div style={{ width: '100%', height: 300, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'transparent' }} />
         </motion.div>
       </article>
+      <section style={{ marginTop: 18 }} aria-label="Collection editorial">
+        {collection.description ? <div className="muted">{collection.description}</div> : null}
+        <div style={{ marginTop: 12 }}>
+          <h4 className="display">EXPLORE A COLEÇÃO</h4>
+          <p className="muted" style={{ marginTop: 8 }}>Esta coleção é uma curadoria editorial do arquivo MOTION. Navegue pelo arquivo para descobrir máquinas relacionadas por tema.</p>
+        </div>
+      </section>
+
+      {/* More collections */}
+      <section style={{ marginTop: 20 }} aria-label="More collections">
+        <h4 className="display">OUTRAS COLEÇÕES</h4>
+        <div style={{ marginTop: 12, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 12 }}>
+          {/* show other collections as navigation */}
+          {(() => {
+            const all: any[] = mockCollections || []
+            return all.filter((c: any) => c.id !== collection.id).slice(0,4).map((c: any) => (
+              <Link key={c.id} to={`/collections/${c.slug}`} className="card card-body" style={{ textDecoration: 'none', color: 'inherit' }}>
+                <div style={{ fontWeight: 700 }}>{c.title}</div>
+                {c.description ? <div className="muted" style={{ marginTop: 6 }}>{c.description}</div> : null}
+              </Link>
+            ))
+          })()}
+        </div>
+      </section>
     </main>
   )
 }

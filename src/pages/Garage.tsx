@@ -106,6 +106,19 @@ export default function Garage(){
   const savedCarsCount = savedCars.length
   const savedCollectionsCount = savedCollections.length
 
+  const estimatedValue = React.useMemo(() => {
+    const vals = savedCars.map(c => c.valueUsd || 0).filter(v => v > 0)
+    if (vals.length === 0) return 0
+    const sum = vals.reduce((a,b) => a+b, 0)
+    return sum
+  }, [savedCars])
+
+  const averageValue = React.useMemo(() => {
+    const vals = savedCars.map(c => c.valueUsd || 0).filter(v => v > 0)
+    if (vals.length === 0) return 0
+    return Math.round(vals.reduce((a,b) => a+b, 0) / vals.length)
+  }, [savedCars])
+
   if (loading) return <Loading />
   if (error) return <ErrorState onRetry={() => { loadAll() }} />
 
@@ -129,7 +142,7 @@ export default function Garage(){
             <div className="garage-section-description muted">Os carros que você salvou na sua garagem pessoal.</div>
           </div>
             <div>
-             <Link to="/cars" className="meta motion-link">EXPLORAR CARROS →</Link>
+             <Link to="/cars" className="meta motion-link" style={{ color: 'var(--color-shine)' }}>EXPLORAR CARROS →</Link>
            </div>
         </div>
 
@@ -177,9 +190,9 @@ export default function Garage(){
                         <div className="muted card-meta">{c.brand}</div>
                         <div className="card-title">{c.name}</div>
                         <div className="muted" style={{ marginTop: 8 }}>{c.year}</div>
-                        <div style={{ marginTop: 10, display: 'flex', gap: 8 }}>
-                           <Link to={`/cars/${c.slug}`} className="meta motion-link">VER →</Link>
+                        <div style={{  marginTop: 10, display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
                            <button className="ui-retry-btn" onClick={() => removeSlug(KEY_CARS, c.slug, setSavedCarSlugs)}>REMOVER</button>
+                           <Link to={`/cars/${c.slug}`} className="meta motion-link" style={{ color: 'var(--color-shine)' }}>VER →</Link>
                         </div>
                       </div>
                     </div>
@@ -278,6 +291,13 @@ export default function Garage(){
             <div className="meta">COLEÇÕES</div>
             <div className="display-massive">{savedCollectionsCount}</div>
           </div>
+          {estimatedValue > 0 && (
+            <div className="garage-insight-item card card-body">
+              <div className="meta">ESTIMATED VALUE</div>
+              <div className="display-massive">US$ {estimatedValue.toLocaleString('en-US')}</div>
+              {averageValue > 0 && <div className="muted" style={{ marginTop: 6 }}>MÉDIA: US$ {averageValue.toLocaleString('en-US')}</div>}
+            </div>
+          )}
         </div>
       </section>
 

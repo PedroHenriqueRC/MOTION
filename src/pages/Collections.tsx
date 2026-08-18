@@ -110,7 +110,7 @@ export default function Collections(){
               <h2 style={{color: 'white'}} className="card-title">{remaining[0].title}</h2>
               {remaining[0].description ? <div className="muted" style={{ marginTop: 8 , color: 'white' }}>{remaining[0].description}</div> : null}
               <div style={{ marginTop: 12 }}>
-                 <Link to={`/collections/${remaining[0].slug}`} className="meta motion-link">EXPLORAR COLEÇÃO →</Link>
+                 <Link to={`/collections/${remaining[0].slug}`} className="meta motion-link" style={{ color: 'var(--color-shine)' }}>EXPLORAR COLEÇÃO →</Link>
               </div>
             </div>
             <div>

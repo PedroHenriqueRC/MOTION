@@ -39,6 +39,18 @@ export default function Stories(){
     return () => { mountedRef.current = false }
   }, [])
 
+  // compute memoized values before any early returns so hook order is stable
+  const editorPick = React.useMemo(() => {
+    if (!stories || stories.length === 0) return undefined
+    return stories.reduce((a, b) => ((b.excerpt?.length || 0) > (a.excerpt?.length || 0) ? b : a), stories[0])
+  }, [stories])
+
+  const byCategory = React.useMemo(() => {
+    const m: Record<string, Story[]> = {}
+    stories.forEach(s => { const k = s.category || 'Geral'; if (!m[k]) m[k]=[]; m[k].push(s) })
+    return m
+  }, [stories])
+
   if (loading) return <Loading />
   if (error) return <ErrorState onRetry={() => { load() }} />
   if (!stories || stories.length === 0) return <EmptyState message="Nenhuma história encontrada." />
@@ -62,11 +74,26 @@ export default function Stories(){
         </section>
       )}
 
+      {/* Editor's pick */}
+      {editorPick && (
+        <section style={{ marginTop: 24 }} aria-label="Editor's pick">
+          <h3 className="display">EDITOR'S PICK</h3>
+          <div style={{ marginTop: 12 }}>
+            <article className="card card-body--lg">
+              <div className="story-category">{editorPick.category}</div>
+              <h3 className="story-title">{editorPick.title}</h3>
+              {editorPick.excerpt ? <p className="muted" style={{ marginTop: 8 }}>{editorPick.excerpt}</p> : null}
+              <div style={{ marginTop: 10 }}><a href={`/stories/${editorPick.slug}`} className="meta motion-link">LER →</a></div>
+            </article>
+          </div>
+        </section>
+      )}
+
       {/* Latest stories */}
       <section style={{ marginTop: 28 }} aria-label="Latest stories">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
             <h2 className="display">HISTÓRIAS RECENTES</h2>
-            <div className="meta motion-link">EXPLORAR TODAS AS HISTÓRIAS →</div>
+            <div className="meta motion-link" style={{ color: 'var(--color-shine)' }}>EXPLORAR TODAS AS HISTÓRIAS →</div>
           </div>
 
         <div style={{ marginTop: 18, display: 'grid', gap: 20 }}>
@@ -97,7 +124,7 @@ export default function Stories(){
               <article key={`list-${s.id}`} className="card card-body--lg">
                 <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
                   <div style={{ width: 140, height: 92, overflow: 'hidden', borderRadius: 6 }}>
-                    <img src={s.image} alt={s.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
+                    <img src={s.image} alt={s.title} style={{ width: '100%', height: '100%', objectFit: 'cover'}} loading="lazy" />
                   </div>
                   <div>
                     <div className="story-category micro">{s.category}</div>

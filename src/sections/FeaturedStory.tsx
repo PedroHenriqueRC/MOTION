@@ -23,6 +23,7 @@ export default function FeaturedStory({ story }: { story?: Story }){
           className="story-cta motion-link"
           whileHover={reduce ? {} : { x: 8 }}
           aria-label={`Ler ${story.title}`}
+          style={{ fontWeight: "700", fontSize: 16, color: "var(--color-shine)" }}
         >
           LER →
         </MotionLink>

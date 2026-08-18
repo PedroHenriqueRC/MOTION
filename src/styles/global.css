@@ -39,6 +39,9 @@ a {
   text-decoration: none
 }
 
+/* Enforce wine-red text color for links and buttons as requested */
+
+
 /* Focus */
 :focus {
   outline: 2px solid var(--color-border-light);
@@ -939,6 +942,73 @@ a {
 .home-cta .garage-cta {
   padding: 0.9rem 1.4rem
 }
+
+/* Home landing specific sections (minimal, editorial layout) */
+.home-benefits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  align-items: start;
+}
+.home-benefit-item {
+  padding: 18px;
+  background: transparent;
+}
+.home-benefit-item .number {
+  font-weight: 800;
+  font-size: 1.6rem;
+  color: var(--color-text-secondary);
+  opacity: 0.95;
+}
+.home-benefit-item .title {
+  margin-top: 8px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+.home-how-it-works {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.home-how-step {
+  text-align: center;
+  padding: 14px;
+}
+.home-how-step .step-number {
+  font-weight: 800;
+  font-size: 2rem;
+  color: var(--color-text-secondary);
+}
+.home-testimonials {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+}
+.home-testimonial {
+  padding: 16px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 8px;
+}
+.home-offer {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-radius: 8px;
+}
+.home-faq details {
+  margin-bottom: 12px;
+  padding: 12px;
+  background: transparent;
+  border-radius: 6px;
+}
+.home-faq summary {
+  font-weight: 700;
+  cursor: pointer;
+}
+
 
 /* Car detail editorial styles */
 .car-hero {

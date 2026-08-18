@@ -1157,6 +1157,66 @@ export const stories: Story[] = [
   }
 ]
 
+// Additional editorial stories added to enrich the magazine experience
+stories.push(
+  {
+    id: 's6',
+    slug: 'aerodynamics-basics',
+    title: 'Noções de Aerodinâmica para Entusiastas',
+    category: 'TÉCNICO',
+    excerpt: 'Como downforce, arrasto e perfil afetam a performance de um carro esportivo.',
+    image: image('../images/stories/Arte_do_Equilíbrio.jpg')
+  },
+  {
+    id: 's7',
+    slug: 'italian-supercars-heritage',
+    title: 'Herança dos Supercarros Italianos',
+    category: 'HISTÓRIA',
+    excerpt: 'Breve panorama sobre como a Itália moldou o supercarro moderno.',
+    image: image('../images/stories/Golden_Era_JDM.jpg')
+  },
+  {
+    id: 's8',
+    slug: 'tuning-culture',
+    title: 'Cultura Tuning: Raiz e Evolução',
+    category: 'CULTURA',
+    excerpt: 'Das ruas aos eventos: como o tuning virou linguagem cultural.',
+    image: image('../images/stories/Twin_Turbo_vs_Naturally_Aspirated.jpg')
+  },
+  {
+    id: 's9',
+    slug: 'vintage-maintenance',
+    title: 'Manutenção de Clássicos: Prioridades',
+    category: 'TÉCNICO',
+    excerpt: 'Dicas práticas para manter um carro antigo saudável e pronto para dirigir.',
+    image: image('../images/stories/Arte_do_Equilíbrio.jpg')
+  },
+  {
+    id: 's10',
+    slug: 'design-language',
+    title: 'A Linguagem do Design Automotivo',
+    category: 'DESIGN',
+    excerpt: 'Como proporções e detalhes definem a identidade de um modelo.',
+    image: image('../images/stories/Twin_Turbo_vs_Naturally_Aspirated.jpg')
+  },
+  {
+    id: 's11',
+    slug: 'jdm-legacy',
+    title: 'Legado JDM: A Influência Global',
+    category: 'CULTURA',
+    excerpt: 'Por que os esportivos japoneses dos anos 90 continuam inspirando gerações.',
+    image: image('../images/stories/Golden_Era_JDM.jpg')
+  },
+  {
+    id: 's12',
+    slug: 'track-vs-road',
+    title: 'Carros de Pista vs. Carros de Rua',
+    category: 'ANÁLISE',
+    excerpt: 'As diferenças fundamentais entre um carro otimizado para pista e um para uso diário.',
+    image: image('../images/stories/Twin_Turbo_vs_Naturally_Aspirated.jpg')
+  }
+)
+
 export const collections: Collection[] = [
   { 
     id: 'c1', 
@@ -1189,3 +1249,11 @@ export const collections: Collection[] = [
     description: 'Máquinas impulsionadas por uma das configurações de motor mais nobres e sonoras da história.' 
   }
 ]
+
+// Additional editorial collections to enrich curation
+collections.push(
+  { id: 'c6', slug: '1990s-icons', title: '1990s Icons', description: 'Ícones dos anos 90 que definiram uma era de performance.' },
+  { id: 'c7', slug: 'turbo-era', title: 'Turbo Era', description: 'Carros que exploraram a transformação trazida pelo turbo.' },
+  { id: 'c8', slug: 'european-gt', title: 'European GT', description: 'Gran Turismos europeus feitos para longas jornadas e velocidade.' },
+  { id: 'c9', slug: 'japanese-performance', title: 'Japanese Performance', description: 'Seleção de máquinas japonesas com foco em engenharia e emoções.' }
+)

@@ -9,8 +9,11 @@ export default function Footer() {
         <nav className="footer-nav">
           <Link to="/">Início</Link>
           <Link to="/discovery">Descoberta</Link>
-          <Link to="/garage">Garagem</Link>
+          <Link to="/cars">Carros</Link>
           <Link to="/stories">Histórias</Link>
+          <Link to="/brands">Marcas</Link>
+          <Link to="/collections">Coleções</Link>
+          <Link to="/garage">Garagem</Link>
         </nav>
         <nav className="footer-nav">
           <a href="https://github.com/PedroHenriqueRC" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">

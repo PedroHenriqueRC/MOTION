@@ -109,6 +109,20 @@ export default function Brands(){
         </div>
       </section>
 
+      {/* Most complete archives: brands with largest file counts */}
+      <section style={{ marginTop: 24 }} aria-label="Most complete archives">
+        <h2 className="display">MAIORES ARCHIVOS</h2>
+        <div style={{ marginTop: 12, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+          {Object.entries(counts).sort((a,b) => b[1]-a[1]).slice(0,6).map(([name, cnt]) => (
+            <div key={name} className="card card-body" style={{ padding: 10 }}>
+              <div style={{ fontWeight: 700 }}>{name}</div>
+              <div className="muted" style={{ marginTop: 6 }}>{cnt} CARROS</div>
+              <div style={{ marginTop: 8 }}><Link to="/brands" className="meta motion-link">EXPLORAR →</Link></div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Brand index alphabetical */}
       <section style={{ marginTop: 28 }} aria-label="Brand index">
         <h2 className="display">ÍNDICE DE MARCAS</h2>

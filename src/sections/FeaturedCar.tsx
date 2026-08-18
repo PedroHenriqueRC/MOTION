@@ -19,6 +19,7 @@ export default function FeaturedCar({ car }: { car?: Car }){
           className="meta featured-cta motion-link"
           whileHover={reduce ? {} : { x: 8 }}
           aria-label={`Explorar ${car.brand} ${car.name}`}
+          style={{ fontWeight: "700", fontSize: 14, color: "var(--color-shine)" }}
         >
           EXPLORAR →
         </MotionLink>

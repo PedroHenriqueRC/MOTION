@@ -47,6 +47,18 @@ export default function Discovery(){
     return () => { mountedRef.current = false }
   }, [])
 
+  // compute memoized values before any early returns so hook order is stable
+  // editorial curated selections (deterministic)
+  const editorPicks = React.useMemo(() => {
+    return [...cars].filter(c => typeof c.valueUsd === 'number').sort((a,b) => (b.valueUsd! - a.valueUsd!)).slice(0,4)
+  }, [cars])
+
+  const eras = React.useMemo(() => {
+    const m: Record<string, number> = {}
+    cars.forEach(c => { if (c.year) { const d = Math.floor(Number(c.year)/10)*10; const label = `${d}s`; m[label] = (m[label]||0)+1}})
+    return Object.entries(m).sort((a,b) => Number(a[0].slice(0,4)) - Number(b[0].slice(0,4)))
+  }, [cars])
+
   if (loading) return <Loading />
   if (error) return <ErrorState onRetry={() => { loadAll() }} />
 
@@ -54,23 +66,45 @@ export default function Discovery(){
   if (!anyData) return <EmptyState message="Nenhum conteúdo disponível." />
 
   const firstCars = cars.slice(0,3)
-  const firstStories = stories.slice(0,3)
-  const firstBrands = brands.slice(0,3)
-  const firstCollections = collections.slice(0,3)
+  const firstStories = stories.slice(0,4)
+  const firstBrands = brands.slice(0,4)
+  const firstCollections = collections.slice(0,4)
 
   return (
     <main className="container section-space-large" aria-label="Descoberta">
       <header>
-        <h1 className="display-xl">DESCOBERTA</h1>
-        <p className="muted" style={{ marginTop: 8 }}>Explore carros, histórias, marcas e coleções do arquivo MOTION.</p>
+        <h1 className="display-xl">DESCUBRA</h1>
+        <p className="muted" style={{ marginTop: 8 }}>Explore carros, histórias, marcas e coleções dos arquivos <span style={{ fontWeight: 'bold', color: 'white', display: 'inline' }}>MOTION</span>.</p>
       </header>
+
+      {/* Editor's Picks */}
+      {editorPicks.length > 0 && (
+        <section style={{ marginTop: 28 }} aria-label="Editor's picks">
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+            <h2 className="display">ESCOLHA DO EDITOR</h2>
+            <a href="/cars" className="meta motion-link" style={{ color: 'var(--color-shine)' }}>EXPLORAR TODOS →</a>
+          </div>
+          <div style={{ marginTop: 12, display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', gap: 12 }}>
+            {editorPicks.map(c => (
+              <article key={c.id} className="card">
+                <div className="card-media"><img src={c.image} alt={`${c.brand} ${c.name}`} loading="lazy" /></div>
+                <div className="card-body">
+                  <div className="muted card-meta">{c.brand}</div>
+                  <div style={{ color: 'black' }} className="card-title">{c.name}</div>
+                  {c.valueUsd ? <div className="muted" style={{ marginTop: 6 }}>US$ {c.valueUsd.toLocaleString('en-US')}</div> : null}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Cars Section */}
       {firstCars.length > 0 && (
         <section style={{ marginTop: 32 }} aria-label="Cars">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
             <h2 className="display">CARROS</h2>
-            <Link to="/cars" className="meta motion-link">EXPLORAR TODOS OS CARROS →</Link>
+            <Link to="/cars" className="meta motion-link" style={{ color: 'var(--color-shine)' }}>EXPLORAR TODOS OS CARROS →</Link>
           </div>
 
           <div style={{ marginTop: 12, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 20 }}>
@@ -98,7 +132,7 @@ export default function Discovery(){
         <section style={{ marginTop: 32 }} aria-label="Stories">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
             <h2 className="display">HISTÓRIAS</h2>
-            <Link to="/stories" className="meta motion-link">EXPLORAR TODAS AS HISTÓRIAS →</Link>
+            <Link to="/stories" className="meta motion-link" style={{ color: 'var(--color-shine)' }}>EXPLORAR TODAS AS HISTÓRIAS →</Link>
           </div>
 
           <div style={{ marginTop: 12, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 20 }}>
@@ -127,7 +161,7 @@ export default function Discovery(){
         <section style={{ marginTop: 32 }} aria-label="Brands">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
             <h2 className="display">MARCAS</h2>
-            <Link to="/brands" className="meta motion-link">EXPLORAR TODAS AS MARCAS →</Link>
+            <Link to="/brands" className="meta motion-link" style={{ color: 'var(--color-shine)' }}>EXPLORAR TODAS AS MARCAS →</Link>
           </div>
 
           <div style={{ marginTop: 12, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 20 }}>
@@ -150,7 +184,7 @@ export default function Discovery(){
         <section style={{ marginTop: 32, marginBottom: 24 }} aria-label="Collections">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
             <h2 className="display">COLEÇÕES</h2>
-            <Link to="/collections" className="meta motion-link">EXPLORAR TODAS AS COLEÇÕES →</Link>
+            <Link to="/collections" className="meta motion-link" style={{ color: 'var(--color-shine)' }}>EXPLORAR TODAS AS COLEÇÕES →</Link>
           </div>
 
           <div style={{ marginTop: 12, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 20 }}>
@@ -163,6 +197,24 @@ export default function Discovery(){
                   </div>
                 </Link>
               </motion.article>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Explore by Era */}
+      {eras.length > 0 && (
+        <section style={{ marginTop: 32, marginBottom: 24 }} aria-label="Explore by era">
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+            <h2 className="display">EXPLORE POR DÉCADA</h2>
+            <a href="/cars" className="meta motion-link" style={{ color: 'var(--color-shine)' }}>VER ARQUIVO →</a>
+          </div>
+          <div style={{ marginTop: 12, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+            {eras.map(([era, count]) => (
+              <div key={era} className="card card-body" style={{ padding: 10 }}>
+                <div style={{ fontWeight: 800 }}>{era}</div>
+                <div className="muted" style={{ marginTop: 6 }}>{count} MACHINES</div>
+              </div>
             ))}
           </div>
         </section>

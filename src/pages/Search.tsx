@@ -117,16 +117,17 @@ export default function Search(){
               <section>
                 <h2 className="meta">CARROS</h2>
                 <div style={{ marginTop: 12, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 20 }}>
-                  {matches.cars.map(c => (
-                    <motion.article key={c.id} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: reduce ? 0 : 0.28 }}>
-                      <Link to={`/cars/${c.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                        <div className="card card-body">
-                          <div className="muted card-meta">{c.brand}</div>
-                          <div className="card-title">{c.name}</div>
-                        </div>
-                      </Link>
-                    </motion.article>
-                  ))}
+                    {matches.cars.map(c => (
+                      <motion.article key={c.id} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: reduce ? 0 : 0.28 }}>
+                        <Link to={`/cars/${c.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                          <div className="card card-body">
+                            <div className="muted card-meta">{c.brand}</div>
+                            <div className="card-title">{c.name}</div>
+                            {c.valueUsd ? <div className="muted" style={{ marginTop: 6 }}>US$ {c.valueUsd.toLocaleString('en-US')}</div> : null}
+                          </div>
+                        </Link>
+                      </motion.article>
+                    ))}
                 </div>
               </section>
             )}

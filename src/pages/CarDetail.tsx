@@ -99,6 +99,17 @@ export default function CarDetail(){
     return cars.some(c => c.id !== car.id && c.brand === car.brand)
   }, [cars, car])
 
+  const brandArchiveStats = React.useMemo(() => {
+    if (!car) return undefined
+    const same = cars.filter(c => c.brand === car.brand)
+    if (same.length === 0) return { count: 0 }
+    const years = same.map(c => c.year).filter(Boolean).sort((a,b) => Number(a)-Number(b))
+    const min = years[0]
+    const max = years[years.length-1]
+    const position = years.indexOf(car.year) + 1
+    return { count: same.length, min, max, position }
+  }, [cars, car])
+
   React.useEffect(() => {
     mountedRef.current = true
     loadCar()
@@ -112,7 +123,7 @@ export default function CarDetail(){
   return (
     <main className="container section-space-large" aria-label={`${car.brand} ${car.name}`}>
       <div className="car-back">
-        <Link to="/cars" className="meta motion-link">← VOLTAR PARA CARROS</Link>
+        <Link to="/cars" className="meta motion-link" style={{ color: 'var(--color-shine)' }}>← VOLTAR PARA CARROS</Link>
       </div>
 
       {/* Hero editorial do carro */}
@@ -144,13 +155,22 @@ export default function CarDetail(){
             </div>
           ) : null}
 
+          {/* Archive context for the brand */}
+          {brandArchiveStats && brandArchiveStats.count > 0 && (
+            <div style={{ marginTop: 12 }}>
+              <h4 className="meta">ARQUIVO DA MARCA</h4>
+              <div className="muted" style={{ marginTop: 6 }}>{brandArchiveStats.count} CARROS — RANGE: {brandArchiveStats.min} — {brandArchiveStats.max}</div>
+              {brandArchiveStats.position ? <div className="muted" style={{ marginTop: 6 }}>POSIÇÃO NO ARQUIVO: {brandArchiveStats.position} / {brandArchiveStats.count}</div> : null}
+            </div>
+          )}
+
             <div style={{ marginTop: 16, display: 'flex', gap: 12 }}>
             {saved ? (
               <button className="ui-retry-btn" onClick={() => removeFromGarage(car.slug)}>REMOVER DA GARAGEM</button>
             ) : (
               <button className="garage-cta" onClick={() => addToGarage(car.slug)}>ADICIONAR À GARAGEM</button>
             )}
-            <Link to="/cars" className="meta motion-link" style={{ display: 'flex', alignItems: 'center' }}>VER TODOS OS CARROS</Link>
+            <Link to="/cars" className="meta motion-link" style={{ display: 'flex', alignItems: 'center', color: 'var(--color-shine)' }}>VER TODOS OS CARROS</Link>
           </div>
         </div>
       </article>
