@@ -14,7 +14,7 @@ export default function GarageInvite(){
         <p className="muted garage-description">Crie sua coleção pessoal e construa sua identidade automotiva.</p>
       </div>
       <div>
-        <MotionLink to="/garage" style={{color:'black'}} className="garage-cta motion-link" whileHover={reduce ? {} : { x: 6 }} aria-label="Entrar na garagem">
+        <MotionLink to="/garage" style={{color:'black', width: '220px'}} className="garage-cta motion-link" whileHover={reduce ? {} : { x: 6 }} aria-label="Entrar na garagem">
           ENTRAR NA GARAGEM →
         </MotionLink>
       </div>
