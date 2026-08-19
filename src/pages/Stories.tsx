@@ -77,7 +77,7 @@ export default function Stories(){
       {/* Editor's pick */}
       {editorPick && (
         <section style={{ marginTop: 24 }} aria-label="Editor's pick">
-          <h3 className="display">EDITOR'S PICK</h3>
+          <h3 className="display">ESCOLHA DO EDITOR</h3>
           <div style={{ marginTop: 12 }}>
             <article className="card card-body--lg">
               <div className="story-category">{editorPick.category}</div>
@@ -98,18 +98,21 @@ export default function Stories(){
 
         <div style={{ marginTop: 18, display: 'grid', gap: 20 }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 20 }}>
-            {latest.map(s => (
-              <motion.article key={s.id} className="card" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: reduce ? 0 : 0.36 }}>
-                <Link to={`/stories/${s.slug}`} style={{ textDecoration: 'none', color: 'inherit' }} aria-label={`Ler ${s.title}`}>
-                  <div className="card-media"><img src={s.image} alt={s.title} loading="lazy" /></div>
-                  <div className="card-body">
-                    <div className="story-category">{s.category}</div>
-                    <h3 className="story-title">{s.title}</h3>
-                    {s.excerpt ? <p className="muted card-description">{s.excerpt}</p> : null}
-                  </div>
-                </Link>
-              </motion.article>
-            ))}
+              {latest.map(s => (
+               <motion.article key={s.id} className="card" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: reduce ? 0 : 0.36 }}>
+                 <Link to={`/stories/${s.slug}`} style={{ textDecoration: 'none', color: 'inherit' }} aria-label={`Ler ${s.title}`}>
+                   <div className="card-media" style={{ position: 'relative' }}>
+                     <img src={s.image} alt={s.title} loading="lazy" />
+                     {s.isPremium ? <div style={{ position: 'absolute', left: 8, top: 8, background: 'var(--color-shine)', color: '#000', padding: '4px 8px', borderRadius: 4, fontWeight: 800, fontSize: 12 }}>MOTION+</div> : null}
+                   </div>
+                   <div className="card-body">
+                     <div className="story-category">{s.category}</div>
+                     <h3 className="story-title">{s.title}</h3>
+                     {s.excerpt ? <p className="muted card-description">{s.excerpt}</p> : null}
+                   </div>
+                 </Link>
+               </motion.article>
+             ))}
           </div>
 
           <div className="story-editorial-break" style={{ textAlign: 'center', padding: '24px 0' }}>
@@ -120,20 +123,21 @@ export default function Stories(){
 
           {/* Remaining stories in a full-width list */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 16 }}>
-            {latest.map(s => (
-              <article key={`list-${s.id}`} className="card card-body--lg">
-                <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
-                  <div style={{ width: 140, height: 92, overflow: 'hidden', borderRadius: 6 }}>
-                    <img src={s.image} alt={s.title} style={{ width: '100%', height: '100%', objectFit: 'cover'}} loading="lazy" />
-                  </div>
-                  <div>
-                    <div className="story-category micro">{s.category}</div>
-                    <div style={{ color: 'black' }} className="card-title">{s.title}</div>
-                    {s.excerpt ? <div className="muted card-description" style={{ marginTop: 6 }}>{s.excerpt}</div> : null}
-                  </div>
-                </div>
-              </article>
-            ))}
+             {latest.map(s => (
+               <article key={`list-${s.id}`} className="card card-body--lg">
+                 <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+                   <div style={{ width: 140, height: 92, overflow: 'hidden', borderRadius: 6, position: 'relative' }}>
+                     <img src={s.image} alt={s.title} style={{ width: '100%', height: '100%', objectFit: 'cover'}} loading="lazy" />
+                     {s.isPremium ? <div style={{ position: 'absolute', left: 8, top: 8, background: 'var(--color-shine)', color: '#000', padding: '4px 8px', borderRadius: 4, fontWeight: 800, fontSize: 12 }}>PRÊMIO</div> : null}
+                   </div>
+                   <div>
+                     <div className="story-category micro">{s.category}</div>
+                     <div style={{ color: 'black' }} className="card-title">{s.title}</div>
+                     {s.excerpt ? <div className="muted card-description" style={{ marginTop: 6 }}>{s.excerpt}</div> : null}
+                   </div>
+                 </div>
+               </article>
+             ))}
           </div>
         </div>
       </section>

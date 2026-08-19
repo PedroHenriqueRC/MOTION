@@ -132,7 +132,7 @@ export default function Brands(){
               <div style={{ fontSize: 36, fontWeight: 700, color: 'var(--color-text-muted)' }}>{letter}</div>
               <div>
                 {items.map(b => (
-                  <div key={b.id} className="brand-index-item" style={{ padding: '8px 0', borderBottom: '1px solid var(--color-border)' }}>
+                  <div key={b.id} className="brand-index-item" style={{ padding: '8px 0', borderBottom: '1px solid var(--color-border)', gap: 8, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <Link to={`/brands/${b.slug}`} className="motion-link" style={{ textDecoration: 'none', color: 'inherit' }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         <div>

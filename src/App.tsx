@@ -15,6 +15,10 @@ import CollectionDetail from './pages/CollectionDetail'
 import CollectionCreate from './pages/CollectionCreate'
 import Discovery from './pages/Discovery'
 import Search from './pages/Search'
+import Plans from './pages/Plans'
+import Register from './pages/Register'
+import Login from './pages/Login'
+import Account from './pages/Account'
 
 export default function App() {
   return (
@@ -33,6 +37,10 @@ export default function App() {
         <Route path="collections/:slug" element={<CollectionDetail />} />
         <Route path="garage" element={<Garage />} />
         <Route path="search" element={<Search />} />
+        <Route path="plans" element={<Plans />} />
+        <Route path="register" element={<Register />} />
+        <Route path="login" element={<Login />} />
+        <Route path="account" element={<Account />} />
       </Route>
     </Routes>
   )

@@ -2,254 +2,310 @@
 
 ## Integrantes
 
-- Pedro Henrique
-
----
+- Projeto desenvolvido como atividade acadêmica (Equipe / Autor: conforme repositório).
 
 ## Sobre o produto
 
-MOTION é um protótipo web editorial automotivo com identidade visual "Black Editorial": fundo escuro, tipografia forte e composições cinematográficas que valorizam fotografias e textos editoriais. O projeto reúne um arquivo de carros, conteúdo editorial (Stories), fabricantes (Brands) e coleções curadas (Collections). A experiência foca em descoberta visual, narrativa e numa apresentação tipo revista digital, voltada para entusiastas e estudantes de design/UX.
+MOTION é um protótipo editorial automotivo desenvolvido em React + TypeScript. O projeto simula uma revista digital com curadoria editorial, foco em imagens cinematográficas, textos aprofundados e uma experiência pensada para entusiastas de automóveis.
 
-Público-alvo: entusiastas automotivos, colecionadores, estudantes de design/UX e leitores interessados em conteúdo editorial sobre carros.
+O produto explora a oportunidade de transformar catálogos técnicos em narrativas — apresentando veículos, histórias, marcas e coleções com contexto e estética editorial.
 
-Proposta: demonstrar, em formato de protótipo client-side, uma experiência editorial automotiva navegável. O projeto não possui backend — todos os dados são mockados e a persistência local (Garagem) usa localStorage.
+Público-alvo: entusiastas automotivos interessados em conteúdo editorial — desde curiosos até leitores que buscam análises técnicas e históricas.
 
-Diferenciais: linguagem visual Black Editorial, curadoria de conteúdo, navegação por coleções e histórias, microinterações com Framer Motion e componentes reutilizáveis para consistência visual.
+Proposta de valor: uma experiência editorial premium que organiza conteúdo automotivo (fichas técnicas, histórias, coleções) e oferece uma camada hipotética de assinatura chamada MOTION+ com conteúdo e recursos exclusivos.
 
----
+Diferenciais
+- Linguagem editorial visual (Black Editorial): imagens grandes, tipografia de destaque, espaçamento generoso.
+- Curadoria editorial: histórias, deep dives e seleções por coleções.
+- Modelo de assinatura simulado (MOTION+): planos mock que liberam conteúdo premium.
+
+Como o conteúdo é apresentado
+- Home/Landing com destaques e curadorias.
+- Páginas de Stories e StoryDetail com imagens, categorias e textos.
+- Stories podem ser marcadas como premium (isPremium) e bloqueadas por um paywall client-side quando necessário.
+
+Conceito MOTION+
+- Assinatura fictícia que oferta conteúdo editorial exclusivo, Collections exclusivas, Garage ilimitada e experiência sem publicidade.
+- Totalmente prototipada no cliente — sem backend, pagamentos ou cobrança real.
+
+Como funciona a assinatura simulada
+- Dados dos planos e do produto são mockados em `src/data/mock.ts` (subscriptionPlans).
+- Usuários podem escolher um plano durante o cadastro via query param (`/register?plan=monthly|annual|free`).
+- Sessão simulada e persistida em localStorage. A autorização para conteúdo premium é decidida client-side pela função `hasPremiumAccess()`.
 
 ## Jornada de construção
 
-Esta seção descreve como o MOTION nasceu, evoluiu e foi implementado até a versão entregue.
+Esta seção documenta a evolução do projeto de forma cronológica e reflexiva — não é apenas um changelog técnico, mas um registro das decisões e do raciocínio por trás das mudanças.
 
 ### Ideia inicial
 
-A ideia surgiu da combinação entre interesse por automóveis e a necessidade acadêmica de produzir um projeto frontend que contemplasse produto, UX e design editorial. O tema automotivo foi escolhido por oferecer ativos visuais fortes (fotografia, formas, textura) e uma narrativa rica (história dos modelos, fabricantes e cultura automotiva) — um bom cenário para trabalhar composição tipográfica, hierarquia e storytelling visual.
+O MOTION nasceu como um catálogo de veículos com informações técnicas. Rapidamente surgiram duas percepções:
 
-Inicialmente o projeto foi pensado como um catálogo de carros com fichas técnicas. Com o tempo, a proposta evoluiu para uma experiência editorial que combina:
+- havia oportunidade de dar contexto às fichas técnicas (história, design, cultura);
+- o layout editorial e imagens poderiam transformar a experiência em algo mais aspiracional.
 
-- artigos e spreads (Stories) para contextualizar os veículos;
-- curadorias (Collections) para agrupar por tema/ideia;
-- uma área de descoberta (Discovery) com recortes do arquivo;
-- uma Garagem local (persistência via localStorage) para salvar favoritos;
-- navegação e detalhes por marcas e veículos (Brands, CarDetail).
+Assim, o projeto evoluiu do conceito "catálogo automotivo" para "experiência editorial" com curadoria e narrativas. A partir daí nasceu a ideia de oferecer uma camada adicional de produto (MOTION+) para simular um modelo de negócio editorial baseado em assinatura.
 
-Essa evolução manteve o foco em apresentação visual e usabilidade: a Home/landing foi simplificada para servir como vitrine do produto (hero, benefícios, prova visual e CTA) enquanto as páginas de demonstração preservam a navegação e os estados relevantes para a atividade acadêmica.
+Motivos da escolha do tema automotivo
+- Interesse por narrativa técnica e cultural que os automóveis carregam;
+- disponibilidade de conteúdo fictício (mocks) suficiente para montar uma revista demonstrativa;
+- possibilidade de aplicar uma estética editorial visualmente rica.
+
+Como o conceito evoluiu
+- Catálogo automotivo → experiência editorial (conteúdo, imagens, curadoria) → plataforma de descoberta (Discovery) → produto com conteúdo premium (MOTION+) → assinatura simulada client-side.
 
 ### Pesquisa e referências
 
-Pesquisas e referências guiaram decisões de estética, tipografia e composição. Entre os insumos de design consideramos:
+As decisões visuais e de UX foram inspiradas por práticas observadas em publicações digitais editoriais de alta qualidade: uso de grandes imagens, tipografia potente, composições cinematográficas e hierarquia editorial marcada. Essas referências guiaram escolhas de layout, tamanhos de título, cartas editoriais e o tratamento visual do paywall.
 
-- linguagem editorial contemporânea (hierarquia tipográfica, margens e ritmo); 
-- referências visuais de revistas automotivas e projetos com foco em fotografia cinematográfica;
-- Awwwards como inspiração de polimento e qualidade de execução — usado apenas como referência de linguagem (o layout não foi copiado);
-- o conceito "Black Editorial": superfície escura, contraste forte para destaque das imagens e tipografia com presença, buscando criar atmosfera editorial e foco na imagem.
+Referências (disciplinares e conceituais)
+- Sites e revistas digitais editoriais (concepto visual, tipografia e uso de imagens grandes) — influência sobre layout e identidade visual;
+- Produtos digitais de mídia que usam paywall (inspiração no fluxo, não na implementação técnica) — ajudaram a definir mensagens e CTAs do paywall;
+- Práticas de UX para assinaturas e onboarding — ajudaram a estruturar os fluxos de registro e planos.
 
-As referências foram usadas como inspiração e ponto de partida para escolhas tipográficas, espaçamentos e composição, sem reproduzir layouts específicos de terceiros.
+Observação: as referências foram usadas como inspiração de design e experiência; não houve cópia de conteúdo ou layouts específicos.
 
 ### Ferramentas utilizadas
 
-- React (interface)
-- TypeScript (tipagem)
-- Vite (dev server / build)
-- React Router (navegação)
-- Framer Motion (microinterações/entradas animadas)
-- CSS com tokens (design system mínimo)
-- localStorage (persistência da Garagem)
-- Git / GitHub (controle de versão)
-- VS Code (desenvolvimento)
-- Ferramentas de edição de imagem (uso típico para preparar ativos — não parte do código)
-- OpenCode (agente de auxílio durante desenvolvimento/documentação)
+#### Desenvolvimento
+- React
+- TypeScript
+- Vite
+- React Router
 
----
+#### Interface
+- CSS (projeto contém tokens e estilos globais)
+- Framer Motion (animações leves)
 
-## Uso de IA
+#### Desenvolvimento assistido
+- OpenCode (agente/assistente AI) — assistente de desenvolvimento baseado em um modelo (gpt-5-mini) auxiliou na escrita de código, patches e no planejamento dos incrementos.
 
-Esta seção descreve honestamente como e quando a IA (agente OpenCode) foi utilizada no desenvolvimento.
+#### Versionamento
+- Git (repositório local / remoto conforme infra do curso)
 
-### Ferramenta / agente utilizado
+### Uso de IA
 
-O projeto recebeu assistência do agente OpenCode (um fluxo de auxílio automatizado durante o desenvolvimento). OpenCode foi usado como ferramenta de suporte para auditoria, sugestões de correção e geração de trechos de documentação. Todas as decisões finais foram tomadas pelo desenvolvedor.
+O desenvolvimento contou com a assistência de um agente de IA (OpenCode / gpt-5-mini) integrado ao fluxo de trabalho. A IA foi usada como ferramenta de produtividade para acelerar a implementação e gerar propostas de código, com revisão humana em todas as etapas.
 
-### Como a IA foi utilizada (resumo real)
+Como a IA participou (processo)
+- Tarefas realizadas com auxílio de IA: criação de tipos TypeScript, geração e modificação de arquivos, propostas de componentes React, correção de erros de build, implementação dos fluxos de autenticação simulada e do paywall, estruturação da página comercial e da central do assinante.
+- Estrutura dos prompts: instruções claras por incremento (objetivo, restrições, arquivos a modificar), promoção de auditoria prévia do código e pedidos para mudanças incrementais e não intrusivas.
+- Avaliação e revisão: todo código sugerido pela IA foi revisado manualmente, integrado utilizando operações git e testado com `npm run build`. Alterações sensíveis foram ajustadas por desenvolvedor humano para seguir a arquitetura e padrões do projeto.
 
-- Auditoria de código: análise de warnings e erros no console e identificação de causas (ex.: ordem de hooks, uso de require no ambiente ESM, aninhamento inválido de tags HTML).
-- Implementação e patches: a IA sugeriu mudanças pontuais no código (p. ex. mover algumas chamadas de hooks useMemo antes de retornos condicionais, substituir require por import, e ajustar marcação HTML para evitar <p> aninhado). Essas alterações foram revisadas e aplicadas pelo desenvolvedor.
-- Geração de conteúdo/documentação: auxílio na redação do README e sugestões de estrutura textual.
-- Verificação e QA orientado: a IA ajudou a identificar pontos a validar após mudanças (reiniciar dev server, rotas a testar, verificar console).
+Decisões sobre sugestões da IA
+- Mantiveram-se as sugestões que respeitaram a arquitetura e padrões do projeto (por exemplo: criação de AuthProvider, paywall, tipos e páginas).
+- Foram rejeitadas ou ajustadas sugestões que propunham mudanças globais, dependências novas ou refatorações desnecessárias.
 
-### Processo de interação (fluxo real)
+### Evolução da solução (incrementos)
 
-O ciclo seguido foi: Prompt (descrever problema ou tarefa) → análise do código e do console → sugestão de patch pela IA → revisão humana do patch → aplicação (commit) quando aprovada → verificação local pelo desenvolvedor.
+Esta seção enumera os incrementos realizados durante a disciplina.
 
-### Decisões humanas
+#### Incremento 01 — Fundação do MOTION+
+Objetivo: Modelar o produto MOTION+ e os dados necessários.
+Principais decisões:
+- Adicionar tipos (SubscriptionPlan, SubscriptionStatus), estender User com planId e subscriptionStatus.
+- Marcar Stories com isPremium.
+- Centralizar dados dos planos em `src/data/mock.ts`.
+Resultado:
+- Base de dados mock pronta para suportar planos Free, Mensal e Anual; build válido.
 
-As sugestões da IA foram tratadas como recomendações. O desenvolvedor aprovou e aplicou mudanças quando compatíveis com os objetivos e com a regra de não alterar arquivos além do necessário para consertos. Decisões estéticas, textuais e de produto foram decididas pelo desenvolvedor.
+#### Incremento 02 — Página comercial MOTION+
+Objetivo: Criar uma página de aquisição /plans que apresente MOTION+, proposta de valor e planos.
+Principais decisões:
+- Reutilizar dados de `subscriptionPlans` para popular a página;
+- Manter identidade editorial (fundo escuro, tipografia grande, imagens);
+- CTAs apontam para âncoras ou para /register?plan=...
+Resultado:
+- Página /plans totalmente funcional e integrada à navegação.
 
-### Exemplos reais de sugestões mantidas
+#### Incremento 03 — Cadastro, Login e Sessão
+Objetivo: Implementar autenticação simulada (registro, login, sessão persistida).
+Principais decisões:
+- Usar AuthContext (AuthProvider + useAuth) com persistência em localStorage (`motion_user`) e armazenamento local de contas (`motion_users`) apenas para protótipo;
+- Adicionar páginas /register e /login; criar conta demo (demo@motion.local / motion123) para demonstração;
+- Não armazenar senhas em produção — apenas simulação com aviso no código.
+Resultado:
+- Fluxo de cadastro/login simulado funcionando e persistente entre recargas.
 
-- Mover hooks (useMemo) para antes de retornos condicionais em Discovery, Stories e StoryDetail para corrigir erro de ordem de hooks.
-- Substituir require(...) por import ESM em CollectionDetail para eliminar ReferenceError no ambiente de desenvolvimento (Vite/browser).
-- Corrigir nested <p> para <span> em Discovery para eliminar warning de validação DOM.
+#### Incremento 04 — Paywall
+Objetivo: Controlar acesso a Stories marcados como isPremium.
+Principais decisões:
+- Implementar função central `hasPremiumAccess(user)` (checa planId e subscriptionStatus);
+- Substituir corpo de StoryDetail por Paywall quando necessário;
+- Manter exposição de título, imagem e resumo para quem não tem acesso;
+- Indicar visually os Stories premium na listagem.
+Resultado:
+- Paywall client-side coerente com identidade editorial; acesso controlado pela regra centralizada.
 
-### Sugestões alteradas ou descartadas
+#### Incremento 05 — Central do Assinante
+Objetivo: Transformar /account em Central do Usuário (MOTION+ Hub).
+Principais decisões:
+- Reutilizar mocks (subscriptionPlans, stories);
+- Exibir plano atual, benefícios, vitrine de conteúdo premium e ações de conta;
+- Implementar área de gerenciamento simulada sem alterações de dados reais.
+Resultado:
+- /account converteu-se em uma central editorial e de assinatura, integrando todos os sistemas existentes.
 
-- A IA sugeriu optar por future flags do React Router (opt-in para alterações do v7). A equipe optou por não aplicar o opt‑in durante esta entrega, mantendo comportamento padrão (a sugestão foi documentada e ficou como opção futura).
+#### Incremento 06 — Auditoria e Refinamento Final
+Objetivo: Consolidar documentação, ajustes finais e garantir build estável.
+Principais decisões:
+- Documentação (README) compilando toda a jornada;
+- Ajustes menores de UI e build.
+Resultado:
+- Projeto entregue com build estável e documentação.
 
-### Troca de modelo
+### Decisões e mudanças relevantes
 
-Durante o desenvolvimento não houve troca de modelo reportada. O uso foi centralizado no agente OpenCode conforme necessidade; não foram registradas mudanças de modelo durante o processo.
+- A escolha por autenticação simulada (localStorage) foi motivada pela natureza acadêmica do exercício e pela necessidade de avançar funcionalidades dependentes (paywall, account) sem infraestrutura de backend.
+- Dados foram mantidos mockados e centralizados em `src/data/mock.ts` para evitar inconsistências.
+- A lógica de autorização foi centralizada em `src/utils/subscription.ts` (hasPremiumAccess) para evitar dispersão e garantir consistência.
+- A identidade editorial guiou todas as decisões de layout e copy (evitar estética genérica de SaaS).
 
----
+### Resultado final
 
-## Evolução da solução (narrativa)
+O protótipo MOTION oferece:
+- Navegação editorial com Home, Stories, Cars, Brands, Collections, Discovery e Garage;
+- Página comercial /plans com oferta fictícia MOTION+;
+- Fluxo simulado de cadastro/login com sessão persistida;
+- Paywall client-side controlando acesso a conteúdo premium;
+- Central do Assinante com resumo de plano, benefícios e vitrine de conteúdo premium.
 
-O projeto começou como uma experiência para reunir imagens e fichas técnicas de carros. Com o avanço das iterações, percebeu‑se que a riqueza visual do tema permitia algo além de um catálogo: uma revista digital. Esse insight levou à inclusão de Stories (textos editoriais) e Collections (curadorias), tornando o produto mais narrativo.
+Pontos fortes
+- Coerência editorial e identidade visual;
+- Fluxos de produto bem delineados e integrados;
+- Código organizado em camadas (data, pages, contexts, utils).
 
-Para atender à Atividade 01, a Home foi remodelada para funcionar como uma Landing Page de produto — com hero, benefícios, explicação de funcionamento, prova visual, prova social fictícia, oferta simulada e FAQ — enquanto as páginas do arquivo (Cars, Brands, Collections e detalhes) permaneceram como demonstração das funcionalidades. Houve atenção especial à legibilidade (contraste e tokens de cor), responsividade e consistência tipográfica. O projeto passou por ciclos de QA: testes manuais, correção de imports e ajustes de layout menores.
+Pontos a melhorar / próximos passos
+- Implementar backend real para autenticação e validação de acesso;
+- Implementar fluxo de pagamentos e gerenciamento real de assinaturas;
+- Melhorar o conteúdo editorial com textos completos em StoryDetail;
+- Adicionar testes automáticos e cobertura.
 
-Decisões técnicas relevantes:
+## Requisitos da Atividade 01
 
-- Mantivemos toda a lógica client-side (sem backend) para simplificar a entrega e focar na experiência visual e de navegação.
-- Dados ampliados simulados em src/data/mock.ts para demonstrar conteúdo suficiente para a atividade.
-- A Garagem persiste slugs em localStorage, suficiente para demonstração de fluxo de salvar/favoritar.
-
----
-
-## Resultado final
-
-### Como avaliamos o resultado
-
-- Pontos fortes: identidade visual consistente (Black Editorial), navegação clara entre páginas, seções editoriais (Stories), curadorias (Collections) e interações sutis com Framer Motion.
-- Experiência visual: imagens com destaque, tipografia hierarquizada e composição editorial que destaca conteúdo e navegação.
-- Navegação: rotas implementadas e CTAs funcionais que direcionam para páginas existentes (/discovery, /cars, /garage, etc.).
-- Atendimento ao enunciado: o protótipo contém hero, benefícios, como funciona, prova social fictícia, oferta simulada, FAQ e CTA funcional.
-
-### O que aprendemos
-
-- React e regras de hooks: atenção à ordem de hooks (useState/useMemo) e impactos em renders condicionais.
-- Componentização: utilidade de primitives (card, card-media, card-body) para consistência e repetibilidade.
-- Design editorial: importância do contraste, ritmo tipográfico e tratamento de imagens para composições cinematográficas.
-- Uso de IA: o agente ajudou a acelerar auditoria e a propor patches, porém a validação humana foi essencial.
-
-### Limitações e o que faríamos diferente com mais tempo
-
-Possíveis melhorias realistas:
-
-- Backend e API para persistência real de garagem e conteúdo editorial;
-- Painel administrativo para gerenciar Stories/Collections/Carros;
-- Autenticação e perfis de usuário;
-- Testes automatizados (unit e integration tests);
-- Otimizações de performance e lazy-loading mais preciso;
-- Acessibilidade: foco em leitura por screen readers, contraste refinado e testes com ferramentas de A11Y;
-- Internacionalização (i18n) se necessário.
-
----
-
-## Requisitos da Atividade 01 (Checklist)
-
-- [x] Identidade visual
-- [x] Nome e proposta
-- [x] Hero
-- [x] Benefícios
-- [x] Diferenciais
-- [x] Imagens/representações
-- [x] Como funciona
-- [x] Prova social (fictícia)
-- [x] Oferta/preço (simulado)
-- [x] FAQ
-- [x] CTA funcional
-
----
+| Requisito | Status | Onde está implementado |
+|---|---:|---|
+| Identidade visual (Black Editorial) | ✅ | estilos globais, componentes e páginas (src/styles, src/sections, src/pages) |
+| Nome e proposta | ✅ | README + /plans (src/pages/Plans.tsx) |
+| Hero | ✅ | /plans (Hero), Home (src/sections/Hero.tsx) |
+| Benefícios e diferenciais | ✅ | /plans e /account (src/pages/Plans.tsx, src/pages/Account.tsx) |
+| Imagens/representações | ✅ | src/images + uso em cards e Hero (src/pages, src/sections) |
+| Como funciona | ✅ | /plans seção 'Como funciona' (src/pages/Plans.tsx) |
+| Prova social fictícia | ✅ | Home (seção testimonials) (src/pages/Home.tsx) |
+| Oferta/preço | ✅ | subscriptionPlans em src/data/mock.ts; exibido em /plans e /account |
+| FAQ | ✅ | /plans FAQ (src/pages/Plans.tsx) |
+| CTA funcional/simulado | ✅ | CTAs apontam para /register?plan=... e /login (src/pages/Plans.tsx) |
+| React | ✅ | Código base (React + TS) |
+| Client-side | ✅ | Toda a lógica é client-side (no repositório) |
+| Dados mockados | ✅ | src/data/mock.ts |
 
 ## Arquitetura
 
-Estrutura principal do frontend (preservada):
+Organização principal do código:
 
-- src/pages — páginas e rotas (Home, Cars, CarDetail, Stories, StoryDetail, Brands, BrandDetail, Collections, CollectionDetail, Discovery, Search, Garage)
-- src/components — componentes reutilizáveis (Navigation, Footer, estados UI: Loading, ErrorState, EmptyState)
-- src/sections — seções editoriais (Hero, FeaturedCar, FeaturedStory, Discovery, GarageInvite)
-- src/data — modelos, mock.ts (dados mockados) e repo.ts (repositório local que retorna os mocks)
-- src/styles — tokens.css e global.css (design tokens e regras globais)
+- src/pages — páginas de rota (Home, Stories, StoryDetail, Plans, Register, Login, Account, etc.)
+- src/components — componentes reutilizáveis (navegação, UI, paywall)
+- src/sections — seções compostas usadas em Home e Landing
+- src/data — dados mock (mock.ts), modelos (models.ts) e repo para acessos
+- src/contexts — AuthContext (sessão simulada)
+- src/utils — utilitários como subscription rule
+- src/styles — tokens e estilos globais
 
-Observação: a estrutura de código não foi alterada nesta etapa de documentação.
-
----
+Cada camada tem responsabilidade clara: pages orquestram, components representam, sections compõem, data fornece conteúdo mock, contexts gerenciam estado cross-cutting.
 
 ## Stack
 
-As tecnologias utilizadas:
-
 | Tecnologia | Finalidade |
-|:----------:|-----------|
-| React | Construção da interface |
-| TypeScript | Tipagem |
-| Vite | Desenvolvimento / build |
+|---|---|
+| React | Biblioteca UI |
+| TypeScript | Tipagem estática |
+| Vite | Build / dev server |
 | React Router | Navegação |
-| Framer Motion | Animações |
-| CSS (tokens) | Design system |
-| localStorage | Persistência local (Garagem) |
-
----
+| Framer Motion | Animações leves |
+| CSS (tokens) | Estilos e identidade visual |
+| localStorage | Persistência de sessão simulada |
 
 ## Rotas
 
 Rotas principais implementadas:
-
-- / — Home (Landing Page)
-- /discovery — Discovery
-- /cars — Index de carros
-- /cars/:slug — Car Detail
-- /stories — Histórias
-- /stories/:slug — Story Detail
-- /brands — Marcas
-- /brands/:slug — Brand Detail
+- / — Home
+- /plans — Página comercial MOTION+
+- /stories — Lista de histórias
+- /stories/:slug — Detalhe da história (aplica Paywall quando necessário)
+- /cars — Lista de carros
+- /cars/:slug — Detalhe do carro
+- /brands — Lista de marcas
 - /collections — Coleções
-- /collections/:slug — Collection Detail
-- /collections/create — Criar coleção (simulado)
-- /garage — Garagem pessoal
-- /search — Busca
+- /collections/:slug — Detalhe da coleção
+- /garage — Garagem
+- /discovery — Discovery
+- /search — Pesquisa
+- /register — Cadastro (aceita ?plan=free|monthly|annual)
+- /login — Login
+- /account — Central do Usuário / MOTION+
 
-> Observação: as rotas listadas refletem as páginas existentes em src/pages.
-
----
+As rotas estão declaradas em `src/App.tsx` utilizando `react-router` e são montadas dentro de `MainLayout`.
 
 ## Como executar
 
-Instalação e execução local:
+1. Instalar dependências:
 
-```bash
+```
 npm install
+```
+
+2. Rodar em desenvolvimento:
+
+```
 npm run dev
+```
+
+3. Build de produção:
+
+```
 npm run build
+```
+
+4. Visualizar build:
+
+```
 npm run preview
 ```
 
----
-
-## Limitações (reiteradas)
-
-- Projeto 100% client-side — sem backend, API ou banco de dados;
-- Dados mockados em src/data/mock.ts — servem como fonte de verdade para a demo;
-- Persistência limitada: somente a Garagem usa localStorage para salvar slugs;
-- Não há autenticação nem painel administrativo;
-- Testes automatizados não incluídos nesta entrega.
-
----
-
 ## Estado final
 
-POLISHED STATIC PRODUCT PROTOTYPE — uma vitrine navegável do conceito editorial automotivo, adequada para apresentação acadêmica.
+Protótipo funcional com:
+- Experiência editorial (Home, Stories, Carros, Brands, Collections)
+- Produto de assinatura simulado (MOTION+) com planos mock (FREE, Mensal, Anual)
+- Registro e login simulados com persistência via localStorage
+- Paywall client-side que controla acesso a Stories premium
+- Central do Assinante com visão do plano, benefícios, vitrine de conteúdo premium
+
+## Limitações
+
+- Sem backend ou API: toda a lógica é client-side e baseada em mocks.
+- Autenticação simulada: as credenciais são armazenadas localmente para permitir login durante o protótipo.
+- Pagamentos e checkout: não implementados; ações de gerenciamento são simuladas.
+- Segurança: paywall e autenticação são apenas demonstrações e não oferecem proteção real.
+- Escopo reduzido: funcionalidades como comentários, notificações, analytics e gerenciamento real de assinaturas não existem.
+
+## Requisitos da Atividade 01
+
+Conforme tabela acima (ver seção "Requisitos da Atividade 01"), os requisitos solicitados pelo enunciado foram atendidos com implementações localizadas nos arquivos mencionados.
+
+## Auditoria da documentação
+
+Este README foi redigido após inspeção do código fonte e dos arquivos do projeto. Todas as afirmações foram verificadas contra o código:
+
+- Estruturas de dados: `src/data/models.ts` e `src/data/mock.ts`;
+- Rotas: `src/App.tsx`;
+- Autenticação e sessão: `src/contexts/AuthContext.tsx`;
+- Lógica de paywall: `src/utils/subscription.ts` e `src/pages/StoryDetail.tsx`;
+- Central do Assinante: `src/pages/Account.tsx`;
+- Página comercial: `src/pages/Plans.tsx`.
+
+Se algo no código for alterado após esta documentação, recomenda-se atualizar o README para manter a rastreabilidade da jornada.
 
 ---
 
-## Confirmações de entrega
-
-1. O arquivo README.md foi revisado e atualizado conforme o enunciado da atividade.
-2. Resumo objetivo das melhorias: reorganização do documento, detalhes ampliados sobre Ideia Inicial, Pesquisa/Referências (conceito Black Editorial), Ferramentas, Uso de IA (documentação detalhada e factual), Evolução da solução e Resultado Final; preservação das seções técnicas (Stack, Rotas, Execução).
-3. Requisitos não documentados por falta de evidência: nenhuma funcionalidade obrigatória descrita no enunciado deixou de ser documentada; onde havia incerteza (ex.: consumo/contagem de tokens ou custos exatos da IA) preferimos omitir números e descrever o uso qualitativamente.
-4. Nenhum arquivo além do README.md foi alterado nesta etapa.
-
----
-
-Se desejar, posso gerar uma versão resumida (para apresentação) ou adaptar o README para incluir prints de tela (necessita que você disponibilize as imagens a serem referenciadas).  
+Se precisarem, posso gerar um changelog com os commits correspondentes ou uma versão reduzida do README para apresentação.  

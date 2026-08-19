@@ -6,6 +6,9 @@ import Loading from '../components/ui/Loading'
 import ErrorState from '../components/ui/ErrorState'
 import EmptyState from '../components/ui/EmptyState'
 import { motion, useReducedMotion } from 'framer-motion'
+import { useAuth } from '../contexts/AuthContext'
+import { hasPremiumAccess } from '../utils/subscription'
+import Paywall from '../components/ui/Paywall'
 
 export default function StoryDetail(){
   const { slug } = useParams()
@@ -61,6 +64,10 @@ export default function StoryDetail(){
   if (loading) return <Loading />
   if (error) return <ErrorState onRetry={() => { load() }} />
   if (!story) return <EmptyState message="História não encontrada." />
+
+  const auth = (() => { try { return useAuth() } catch { return null } })()
+  const allowed = !story.isPremium || hasPremiumAccess(auth?.user ?? null)
+
   return (
     <main className="container section-space-large" aria-label={story.title}>
       <div className="story-back">
@@ -78,6 +85,22 @@ export default function StoryDetail(){
           {story.excerpt ? <p className="muted story-description">{story.excerpt}</p> : null}
         </div>
       </article>
+
+      {/* Paywall: if story is premium and user is not allowed, show paywall instead of detailed body */}
+      {!allowed ? (
+        <Paywall story={story} userIsFree={!!(auth && auth.user && auth.user.planId === 'p_free')} />
+      ) : (
+        <section style={{ marginTop: 18 }} className="story-body">
+          <div className="card card-body--lg">
+            <p className="muted">(Conteúdo editorial — nesta versão do protótipo o corpo da matéria é demonstrativo.)</p>
+            <div style={{ marginTop: 12 }}>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel lacus id mauris aliquet tincidunt. Sed non urna sed mauris placerat dictum. Suspendisse potenti. Curabitur non risus nec urna dictum faucibus. Phasellus ac orci et eros luctus dignissim.</p>
+              <p>Nam id eros a justo porttitor cursus. Maecenas cursus, turpis nec congue consectetur, magna lorem feugiat lorem, sed luctus urna augue a felis.</p>
+            </div>
+          </div>
+        </section>
+      )}
+
       {relatedStories && relatedStories.length > 0 && (
         <section style={{ marginTop: 28 }} aria-label="Continue lendo">
           <h3 className="display">CONTINUE LENDO</h3>

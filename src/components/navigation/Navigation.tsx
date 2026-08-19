@@ -17,6 +17,7 @@ function IconX(props: { width?: number; height?: number }){
   )
 }
 import { motion } from 'framer-motion'
+import { useAuth } from '../../contexts/AuthContext'
 
 const navItems = [
   { to: '/', label: 'INÍCIO' },
@@ -26,11 +27,13 @@ const navItems = [
   { to: '/brands', label: 'MARCAS' },
   { to: '/collections', label: 'COLEÇÕES' },
   { to: '/garage', label: 'GARAGEM' },
+  { to: '/plans', label: 'ASSINAR' }
 ]
 
 export default function Navigation() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const auth = (() => { try { return useAuth() } catch { return null } })()
 
   React.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 48)
@@ -45,9 +48,35 @@ export default function Navigation() {
         <NavLink to="/" className="nav-logo">MOTION</NavLink>
 
         <nav className="nav-desktop">
-          {navItems.map(i => (
-            <NavLink key={i.to} to={i.to} className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>{i.label}</NavLink>
+          {(auth && auth.user ? navItems.filter(i => i.to !== '/plans') : navItems).map(i => (
+            <NavLink
+              key={i.to}
+              to={i.to}
+              className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+              style={i.label === 'ASSINAR' ? { color: 'var(--color-shine)' } : undefined}
+            >
+              {i.label}
+            </NavLink>
           ))}
+          {/* auth area */}
+          {auth && auth.user ? (
+            <div style={{ display: 'inline-flex', gap: 12, alignItems: 'center', marginLeft: 12 }}>
+              <style>{`
+                .nav-user-name::after {
+                  content: none !important;
+                  display: none !important;
+                }
+              `}</style>
+              <span className="nav-link nav-user-name" style={{ fontWeight: 800, color: 'var(--color-shine)' }}>{auth.user.name}</span>
+
+              <NavLink to="/account" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>MINHA CONTA</NavLink>
+              <button onClick={() => auth.logout()} className="nav-link" style={{ background: 'transparent', border: 'none', cursor: 'pointer' }}>SAIR</button>
+            </div>
+          ) : (
+            <div style={{ display: 'inline-flex', gap: 12, alignItems: 'center', marginLeft: 12 }}>
+              <NavLink to="/login" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>ENTRAR</NavLink>
+            </div>
+          )}
         </nav>
 
         {/* <div className="nav-meta">CULTURA AUTOMOTIVA</div> */}
@@ -57,19 +86,27 @@ export default function Navigation() {
         </button>
       </div>
 
-      <AnimateMobile open={open} onClose={() => setOpen(false)} />
+      <AnimateMobile open={open} onClose={() => setOpen(false)} auth={auth} />
     </header>
   )
 }
 
-function AnimateMobile({ open, onClose }: { open: boolean; onClose: () => void }) {
+function AnimateMobile({ open, onClose, auth }: { open: boolean; onClose: () => void; auth: any }) {
   return (
     <motion.div initial={false} animate={{ height: open ? 'auto' : 0 }} className="mobile-nav-wrapper">
         {open && (
         <motion.nav id="mobile-nav" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.18 }}>
           <div className="container mobile-nav-inner">
-            {navItems.map(i => (
-              <NavLink key={i.to} to={i.to} onClick={onClose} className={({ isActive }) => (isActive ? 'mobile-nav-link active' : 'mobile-nav-link')}>{i.label}</NavLink>
+            {(auth && auth.user ? navItems.filter(i => i.to !== '/plans') : navItems).map(i => (
+              <NavLink
+                key={i.to}
+                to={i.to}
+                onClick={onClose}
+                className={({ isActive }) => (isActive ? 'mobile-nav-link active' : 'mobile-nav-link')}
+                style={i.label === 'ASSINAR' ? { color: 'var(--color-shine)' } : undefined}
+              >
+                {i.label}
+              </NavLink>
             ))}
           </div>
         </motion.nav>
