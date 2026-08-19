@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 // lightweight inline icons to avoid bundler resolution issues
 function IconMenu(props: { width?: number; height?: number }){
   return (
@@ -20,12 +20,12 @@ import { motion } from 'framer-motion'
 import { useAuth } from '../../contexts/AuthContext'
 
 const navItems = [
-  { to: '/', label: 'INÍCIO' },
+  { to: '/', label: 'INÍCIO' },
   { to: '/discovery', label: 'DESCOBERTA' },
   { to: '/cars', label: 'CARROS' },
-  { to: '/stories', label: 'HISTÓRIAS' },
+  { to: '/stories', label: 'HISTÓRIAS' },
   { to: '/brands', label: 'MARCAS' },
-  { to: '/collections', label: 'COLEÇÕES' },
+  { to: '/collections', label: 'COLEÇÕES' },
   { to: '/garage', label: 'GARAGEM' },
   { to: '/plans', label: 'ASSINAR' }
 ]
@@ -34,6 +34,23 @@ export default function Navigation() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const auth = (() => { try { return useAuth() } catch { return null } })()
+  const location = useLocation()
+
+  // When the route changes, remove focus from any nav link so the
+  // click-focused outline/underline effect stops once the new screen loads.
+  // We only blur if the currently focused element looks like a nav control
+  // to avoid disrupting keyboard users who intentionally focused elsewhere.
+  React.useEffect(() => {
+    const t = window.setTimeout(() => {
+      const active = document.activeElement as HTMLElement | null
+      if (!active) return
+      const cls = active.className || ''
+      if (typeof cls === 'string' && (cls.includes('nav-link') || cls.includes('mobile-nav-link') || cls.includes('nav-toggle'))) {
+        active.blur()
+      }
+    }, 60)
+    return () => window.clearTimeout(t)
+  }, [location.pathname])
 
   React.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 48)
@@ -70,7 +87,7 @@ export default function Navigation() {
               <span className="nav-link nav-user-name" style={{ fontWeight: 800, color: 'var(--color-shine)' }}>{auth.user.name}</span>
 
               <NavLink to="/account" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>MINHA CONTA</NavLink>
-              <button onClick={() => auth.logout()} className="nav-link" style={{ background: 'transparent', border: 'none', cursor: 'pointer' }}>SAIR</button>
+              <button onClick={() => auth.logout()} className="nav-link nav-logout">SAIR</button>
             </div>
           ) : (
             <div style={{ display: 'inline-flex', gap: 12, alignItems: 'center', marginLeft: 12 }}>
@@ -81,7 +98,7 @@ export default function Navigation() {
 
         {/* <div className="nav-meta">CULTURA AUTOMOTIVA</div> */}
 
-          <button onClick={() => setOpen(v => !v)} aria-label={open ? 'Fechar navegação' : 'Abrir navegação'} className="nav-toggle" aria-expanded={open} aria-controls="mobile-nav">
+          <button onClick={() => setOpen(v => !v)} aria-label={open ? 'Fechar navegação' : 'Abrir navegação'} className="nav-toggle" aria-expanded={open} aria-controls="mobile-nav">
           {open ? <IconX /> : <IconMenu />}
         </button>
       </div>

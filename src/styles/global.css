@@ -39,6 +39,7 @@ a {
   text-decoration: none
 }
 
+
 /* Enforce wine-red text color for links and buttons as requested */
 
 
@@ -554,6 +555,47 @@ a {
 
 .nav-link.active {
   color: var(--color-accent)
+}
+
+/* Remove the global gray outline for navigation controls and rely on the
+   bottom "after" line to indicate focus/active state. Keep outline for
+   other controls for accessibility. */
+.nav-link:focus,
+.nav-link:focus-visible,
+.mobile-nav-link:focus,
+.mobile-nav-link:focus-visible,
+.nav-toggle:focus,
+.nav-toggle:focus-visible {
+  outline: none;
+}
+
+/* Ensure keyboard focus and active state still show the bottom accent line */
+.nav-link:focus::after,
+.nav-link:focus-visible::after,
+.nav-link.active::after,
+.mobile-nav-link:focus::after,
+.mobile-nav-link:focus-visible::after,
+.mobile-nav-link.active::after {
+  width: 100%;
+  background: var(--color-accent);
+}
+
+.nav-logout {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--color-shine);
+}
+
+.nav-logout::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  height: 2px;
+  width: 0;
+  background: var(--color-shine);
+  transition: width 180ms ease
 }
 
 @media (max-width: 768px) {
