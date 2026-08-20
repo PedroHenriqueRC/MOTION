@@ -75,6 +75,11 @@ export default function Discovery(){
       <header>
         <h1 className="display-xl">DESCUBRA</h1>
         <p className="muted" style={{ marginTop: 8 }}>Explore carros, histórias, marcas e coleções dos arquivos <span style={{ fontWeight: 'bold', color: 'white', display: 'inline' }}>MOTION</span>.</p>
+        <p className="muted" style={{ marginTop: 8 }}>O MOTION é uma plataforma de descoberta de carros, histórias, marcas e coleções. <br/>
+        Aqui, você encontrará uma seleção editorial de carros e universos curados, além de histórias inspiradoras e coleções exclusivas. <br/>
+        Explore o arquivo automotivo e descubra o que mais te interessa!
+        Aproveite, sinta e descubra o <span style={{ fontWeight: 'bold', color: 'white', display: 'inline' }}>Motion</span>. <br/>
+        </p> 
       </header>
 
       {/* Editor's Picks */}

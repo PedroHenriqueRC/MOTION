@@ -52,7 +52,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   // ensure demo account exists (convenience for academic demo)
   React.useEffect(() => {
     const users = readUsersStore()
-    const demoEmail = 'demo@motion.local'
+    const demoEmail = 'pedro.hosterman@gmail.com'
     const found = users.find(u => u.user.email === demoEmail)
     if (!found) {
       // create a demo account pre-populated as MOTION+ annual
@@ -64,7 +64,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         planId: plan?.id ?? 'p_annual',
         subscriptionStatus: 'active'
       }
-      users.push({ user: demoUser, password: 'motion123' })
+      users.push({ user: demoUser, password: 'pedro123' })
       writeUsersStore(users)
     }
   }, [])

@@ -190,7 +190,7 @@ export default function BrandDetail() {
                 <div style={{ marginTop: 14 }}>
                   <Link
                     to={`/cars/${featured.slug}`}
-                    className="garage-cta motion-link"
+                    className="garage-cta motion-link "
                     style={{ color: "black" }}
                   >
                     VER CARRO →

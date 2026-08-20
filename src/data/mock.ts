@@ -13,22 +13,21 @@ const image = (url: string) => url;
 export const cars: (Car & { valueUsd: number })[] = [
   {
     id: "1",
-    slug: "porsche-911-gt3",
-    name: "911 GT3",
+    slug: "porsche-911-gt3-rs",
+    name: "911 GT3 RS",
     brand: "Porsche",
-    year: 2021,
-    valueUsd: 180000,
-    image: image("/images/cars/porsche-911.jpg"),
-    description:
-      "Sensação orientada para pista com comportamento dinâmico e preciso.",
+    year: 2023,
+    valueUsd: 388000,
+    image: image("/images/cars/porsche-911-gt3-rs.jpg"),
+    description: "Aerodinâmica extrema e foco absoluto em desempenho de pista.",
     specs: {
-      engine: "4.0L Flat-6 (naturally aspirated)",
-      power: "502 hp",
-      torque: "469 Nm",
+      engine: "4.0L Flat-6 naturally aspirated",
+      power: "518 hp",
+      torque: "465 Nm",
       transmission: "7-speed PDK",
       drivetrain: "RWD",
-      acceleration: "0-100 km/h em ~3.4s",
-      topSpeed: "318 km/h",
+      acceleration: "0-100 km/h em ~3.2s",
+      topSpeed: "296 km/h",
     },
   },
   {
@@ -351,21 +350,22 @@ export const cars: (Car & { valueUsd: number })[] = [
   },
   {
     id: "18",
-    slug: "porsche-911-gt3-rs",
-    name: "911 GT3 RS",
+    slug: "porsche-911-gt3",
+    name: "911 GT3",
     brand: "Porsche",
-    year: 2023,
-    valueUsd: 388000,
-    image: image("/images/cars/porsche-911-gt3-rs.jpg"),
-    description: "Aerodinâmica extrema e foco absoluto em desempenho de pista.",
+    year: 2021,
+    valueUsd: 180000,
+    image: image("/images/cars/porsche-911.jpg"),
+    description:
+      "Sensação orientada para pista com comportamento dinâmico e preciso.",
     specs: {
-      engine: "4.0L Flat-6 naturally aspirated",
-      power: "518 hp",
-      torque: "465 Nm",
+      engine: "4.0L Flat-6 (naturally aspirated)",
+      power: "502 hp",
+      torque: "469 Nm",
       transmission: "7-speed PDK",
       drivetrain: "RWD",
-      acceleration: "0-100 km/h em ~3.2s",
-      topSpeed: "296 km/h",
+      acceleration: "0-100 km/h em ~3.4s",
+      topSpeed: "318 km/h",
     },
   },
   {
@@ -1148,6 +1148,266 @@ export const cars: (Car & { valueUsd: number })[] = [
       topSpeed: "240 km/h",
     },
   },
+  {
+    id: "58",
+    slug: "volkswagen-golf-r",
+    name: "Golf R",
+    brand: "Volkswagen",
+    year: 2025,
+    valueUsd: 48000,
+    image: image("/images/cars/volkswagen-golf-r.jpg"),
+    description:
+      "A expressão máxima do Golf de produção, combinando potência elevada, tração integral e tecnologia de performance em um hatch compacto desenvolvido para entregar desempenho em qualquer cenário.",
+    specs: {
+      engine: "2.0L TSI turbocharged",
+      power: "328 hp",
+      torque: "420 Nm",
+      transmission: "7-speed DSG",
+      drivetrain: "AWD",
+      acceleration: "0-100 km/h em ~4.6s",
+      topSpeed: "270 km/h",
+    },
+  },
+  {
+    id: "59",
+    slug: "volkswagen-golf-r32",
+    name: "Golf R32",
+    brand: "Volkswagen",
+    year: 2002,
+    valueUsd: 30000,
+    image: image("/images/cars/volkswagen-golf-r32.jpg"),
+    description:
+      "O Golf R32 transformou o hatch compacto em uma máquina de alto desempenho, combinando um motor VR6, tração integral e uma personalidade muito acima do padrão da categoria.",
+    specs: {
+      engine: "3.2L VR6 naturally aspirated",
+      power: "237 hp",
+      torque: "320 Nm",
+      transmission: "6-speed manual",
+      drivetrain: "AWD",
+      acceleration: "0-100 km/h em ~6.6s",
+      topSpeed: "247 km/h",
+    },
+  },
+  {
+    id: "60",
+    slug: "volkswagen-scirocco-r",
+    name: "Scirocco R",
+    brand: "Volkswagen",
+    year: 2010,
+    valueUsd: 22000,
+    image: image("/images/cars/volkswagen-scirocco-r.jpg"),
+    description:
+      "Um cupê esportivo agressivo com design atemporal, linhas largas e o DNA esportivo da Volkswagen, oferecendo desempenho de pista em um pacote exclusivo.",
+    specs: {
+      engine: "2.0L I4 Turbocharged (EA113)",
+      power: "265 hp",
+      torque: "350 Nm",
+      transmission: "6-speed DSG automatic",
+      drivetrain: "FWD",
+      acceleration: "0-100 km/h em ~6.0s",
+      topSpeed: "250 km/h",
+    },
+  },
+  {
+    id: "61",
+    slug: "jaguar-f-type-r",
+    name: "F-Type R AWD",
+    brand: "Jaguar",
+    year: 2024, // Último ano/modelo completo de produção
+    valueUsd: 110000,
+    image: image("/images/cars/jaguar-f-type-r.jpg"),
+    description:
+      "A obra-prima final dos motores V8 da Jaguar. O F-Type R combina um design britânico de tirar o fôlego com a força brutal de um V8 Supercharged de 575 cv.",
+    specs: {
+      engine: "5.0L V8 Supercharged",
+      power: "575 hp",
+      torque: "700 Nm",
+      transmission: "8-speed automatic (ZF)",
+      drivetrain: "AWD",
+      acceleration: "0-100 km/h em ~3.7s",
+      topSpeed: "300 km/h",
+    },
+  },
+  {
+    id: "62",
+    slug: "jaguar-f-type-coupe",
+    name: "F-Type Coupé P300",
+    brand: "Jaguar",
+    year: 2023,
+    valueUsd: 73000,
+    image: image("/images/cars/jaguar-f-type-coupe.jpg"),
+    description:
+      "O equilíbrio perfeito entre a beleza do autêntico design britânico e o comportamento dinâmico de um purasangre, representando o fim de uma era gloriosa na Jaguar.",
+    specs: {
+      engine: "2.0L I4 Turbocharged (Ingenium)",
+      power: "300 hp",
+      torque: "400 Nm",
+      transmission: "8-speed automatic (ZF)",
+      drivetrain: "RWD (Tração Traseira)",
+      acceleration: "0-100 km/h em ~5.7s",
+      topSpeed: "250 km/h",
+    },
+  },
+  {
+    id: "63",
+    slug: "porsche-panamera-turbo-s-e-hybrid",
+    name: "Panamera Turbo S E-Hybrid",
+    brand: "Porsche",
+    year: 2026,
+    valueUsd: 230000,
+    image: image("/images/cars/porsche-panamera-turbo-s-e-hybrid.jpg"),
+    description:
+      "O ápice da terceira geração do Panamera (976). Combina o luxo supremo de um sedã executivo com a violência de um conjunto híbrido V8 biturbo que despeja 782 cv nas quatro rodas.",
+    specs: {
+      engine: "4.0L V8 Twin-Turbo + Electric Motor (PHEV)",
+      power: "782 hp", // Potência combinada do sistema híbrido
+      torque: "1000 Nm", // Força brutal de torque máximo
+      transmission: "8-speed dual-clutch (PDK)",
+      drivetrain: "AWD (Tração Integral)",
+      acceleration: "0-100 km/h em ~2.9s",
+      topSpeed: "325 km/h",
+    },
+  },
+  {
+    id: "64",
+    slug: "porsche-taycan-turbo-gt",
+    name: "Taycan Turbo GT (Weissach Package)",
+    brand: "Porsche",
+    year: 2025,
+    valueUsd: 232000,
+    image: image("/images/cars/porsche-taycan-turbo-gt.jpg"),
+    description:
+      "O carro elétrico de produção mais rápido em Nürburgring. Equipado com o pacote Weissach, ele remove os bancos traseiros para alívio de peso e entrega uma aceleração avassaladora.",
+    specs: {
+      engine: "Dual Electric Motors (105 kWh Battery)",
+      power: "1019 hp", // Potência máxima com Overboost e Launch Control
+      torque: "1340 Nm", // Torque instantâneo colossal
+      transmission: "2-speed automatic (Traseira) + 1-speed (Dianteira)",
+      drivetrain: "AWD (Tração Integral)",
+      acceleration: "0-100 km/h em ~2.2s", // Com pacote Weissach
+      topSpeed: "305 km/h",
+    },
+  },
+  {
+    id: "65",
+    slug: "porsche-718-spyder-rs",
+    name: "718 Spyder RS",
+    brand: "Porsche",
+    year: 2025,
+    valueUsd: 160700, // Preço base sugerido de tabela (MSRP)
+    image: image("/images/cars/porsche-718-spyder-rs.jpg"),
+    description:
+      "A expressão máxima e final da linhagem Boxster de motor central. O Spyder RS herda diretamente o coração mecânico aspirado do 911 GT3 para criar um roadster de pista focado na pureza sonora e dinâmica.",
+    specs: {
+      engine: "4.0L Flat-6 Naturally Aspirated (992 GT3 Engine)",
+      power: "500 hp",
+      torque: "450 Nm",
+      transmission: "7-speed dual-clutch (PDK only)",
+      drivetrain: "RWD (Tração Trasiera)",
+      acceleration: "0-100 km/h em ~3.4s",
+      topSpeed: "308 km/h",
+    },
+  },
+  {
+    id: "66",
+    slug: "porsche-911-turbo-s-cabriolet-992",
+    name: "911 Turbo S Cabriolet (992.2)",
+    brand: "Porsche",
+    year: 2026,
+    valueUsd: 285000,
+    image: image("/images/cars/porsche-911-turbo-s-cabriolet.jpg"),
+    description:
+      "O supercarro definitivo para qualquer clima entra na era eletrificada. A reestilização 992.2 adota o motor Boxer 3.6 T-Hybrid com turbocompressores elétricos, eliminando qualquer atraso de resposta.",
+    specs: {
+      engine: "3.6L Flat-6 Single eTurbo + Electric Motor (T-Hybrid)",
+      power: "711 hp", // Potência combinada atualizada da linha 2026
+      torque: "800 Nm",
+      transmission: "8-speed dual-clutch (PDK)",
+      drivetrain: "AWD (Tração Integral)",
+      acceleration: "0-100 km/h em ~2.6s",
+      topSpeed: "322 km/h",
+    },
+  },
+  {
+    id: "67",
+    slug: "porsche-718-rsk-spyder",
+    name: "718 RSK Spyder",
+    brand: "Porsche",
+    year: 1959,
+    valueUsd: 3500000, // Valor médio de mercado em leilões atuais (US$ 3.5 milhões)
+    image: image("/images/cars/porsche-718-rsk-spyder.jpg"),
+    description:
+      "O 'Giant Killer' definitivo. Uma obra-prima ultraleve de corrida com chassi tubular e carroceria de alumínio moldada à mão que consolidou a Porsche no topo do automobilismo mundial.",
+    specs: {
+      engine: "1.5L Flat-4 Naturally Aspirated (Type 547/3 Fuhrmann)",
+      power: "142 hp",
+      torque: "146 Nm",
+      transmission: "5-speed manual",
+      drivetrain: "RWD (Motor Central)",
+      acceleration: "0-100 km/h em ~5.5s", // Desempenho impressionante para a época
+      topSpeed: "241 km/h",
+    },
+  },
+  {
+    id: "68",
+    slug: "bmw-m4-competition-xdrive-2023",
+    name: "BMW (G82) M4 Competition XDRIVE",
+    brand: "BMW",
+    year: 2023,
+    valueUsd: 102000, // Valor médio de mercado seminovo (FIPE no Brasil flutua em torno de R$ 680.000)
+    image: image("/images/cars/bmw-m4-competition-xdrive.jpg"),
+    description:
+      "O sistema M xDrive distribui a força brutal do motor biturbo S58 entre os dois eixos, oferecendo desempenho de supercarro com controle total, sem perder a capacidade de entregar tração 100% traseira ao toque de um botão.",
+    specs: {
+      engine: "3.0L Twin-Turbo Inline-6 (S58)",
+      power: "510 hp", // Equivalente a 503 hp na medição americana (MSRP)
+      torque: "650 Nm", // 479 lb-ft de torque máximo
+      transmission: "8-speed automatic M Steptronic",
+      drivetrain: "AWD (M xDrive com modos 4WD, 4WD Sport e 2WD puro)",
+      acceleration: "0-100 km/h em 3.5s", // Tempo oficial reduzido graças à tração integral
+      topSpeed: "290 km/h", // Com o pacote opcional M Driver's Package
+    },
+  },
+  {
+    id: "69",
+    slug: "mitsubishi-eclipse-gsx-g2",
+    name: "Eclipse GSX (G2)",
+    brand: "Mitsubishi",
+    year: 1995,
+    valueUsd: 28000, // Valor médio atual de mercado devido à forte valorização como clássico (JDM JDM)
+    image: image("/images/cars/mitsubishi-eclipse-gsx-g2.jpg"),
+    description:
+      "O herói da cultura pop dos anos 90. Na rara versão GSX, o cupê japonês combinava o lendário motor turbo 4G63 com tração integral, tornando-se uma das bases mais cobiçadas para preparação do mundo.",
+    specs: {
+      engine: "2.0L I4 Turbocharged (4G63T)",
+      power: "213 hp", // Configuração original de fábrica da segunda geração
+      torque: "290 Nm",
+      transmission: "5-speed manual",
+      drivetrain: "AWD (Tração Integral)",
+      acceleration: "0-100 km/h em ~6.5s",
+      topSpeed: "230 km/h",
+    },
+  },
+  {
+    id: "70",
+    slug: "alfa-romeo-8c-competizione",
+    name: "8C Competizione",
+    brand: "Alfa Romeo",
+    year: 2008,
+    valueUsd: 320000, // Altamente valorizado em leilões devido à tiragem limitada de 500 unidades
+    image: image("/images/cars/alfa-romeo-8c-competizione.jpg"),
+    description:
+      "Uma escultura sobre rodas com coração de Maranello. O 8C Competizione combina um design retro-futurista deslumbrante com a sinfonia mecânica de um motor V8 aspirado de origem Ferrari.",
+    specs: {
+      engine: "4.7L V8 Naturally Aspirated (Ferrari/Maserati F136 YC)",
+      power: "450 hp",
+      torque: "480 Nm",
+      transmission: "6-speed automated manual (Superfast transaxle)",
+      drivetrain: "RWD (Tração Traseira)",
+      acceleration: "0-100 km/h em ~4.2s",
+      topSpeed: "292 km/h",
+    },
+  },
 ];
 
 export const brands: Brand[] = [
@@ -1174,7 +1434,7 @@ export const brands: Brand[] = [
   { id: "b21", slug: "mitsubishi", name: "Mitsubishi" },
   { id: "b22", slug: "alfa-romeo", name: "Alfa Romeo" },
   { id: "b23", slug: "jaguar", name: "Jaguar" },
-  { id: "b24", slug: "volkswagen", name: "Volkswagen" }
+  { id: "b24", slug: "volkswagen", name: "Volkswagen" },
 ];
 
 export const stories: Story[] = [
@@ -1237,7 +1497,7 @@ stories.push(
     category: "TÉCNICO",
     excerpt:
       "Como downforce, arrasto e perfil afetam a performance de um carro esportivo.",
-    image: image("../images/stories/Arte_do_Equilíbrio.jpg"),
+    image: image("../images/stories/aerodinamica_basica.jpg"),
   },
   {
     id: "s7",
@@ -1245,7 +1505,7 @@ stories.push(
     title: "Herança dos Supercarros Italianos",
     category: "HISTÓRIA",
     excerpt: "Breve panorama sobre como a Itália moldou o supercarro moderno.",
-    image: image("../images/stories/Golden_Era_JDM.jpg"),
+    image: image("../images/stories/italian_supercars_heritage.jpg"),
   },
   {
     id: "s8",
@@ -1253,7 +1513,7 @@ stories.push(
     title: "Cultura Tuning: Raiz e Evolução",
     category: "CULTURA",
     excerpt: "Das ruas aos eventos: como o tuning virou linguagem cultural.",
-    image: image("../images/stories/Twin_Turbo_vs_Naturally_Aspirated.jpg"),
+    image: image("../images/stories/tuning_culture.jpg"),
   },
   {
     id: "s9",
@@ -1262,7 +1522,7 @@ stories.push(
     category: "TÉCNICO",
     excerpt:
       "Dicas práticas para manter um carro antigo saudável e pronto para dirigir.",
-    image: image("../images/stories/Arte_do_Equilíbrio.jpg"),
+    image: image("../images/stories/vintage_maintenance.jpg"),
   },
   {
     id: "s10",
@@ -1270,7 +1530,7 @@ stories.push(
     title: "A Linguagem do Design Automotivo",
     category: "DESIGN",
     excerpt: "Como proporções e detalhes definem a identidade de um modelo.",
-    image: image("../images/stories/Twin_Turbo_vs_Naturally_Aspirated.jpg"),
+    image: image("../images/stories/design_language.jpg"),
   },
   {
     id: "s11",
@@ -1279,7 +1539,7 @@ stories.push(
     category: "CULTURA",
     excerpt:
       "Por que os esportivos japoneses dos anos 90 continuam inspirando gerações.",
-    image: image("../images/stories/Golden_Era_JDM.jpg"),
+    image: image("../images/stories/jdm_legacy.jpg"),
     isPremium: false,
   },
   {
@@ -1289,7 +1549,7 @@ stories.push(
     category: "ANÁLISE",
     excerpt:
       "As diferenças fundamentais entre um carro otimizado para pista e um para uso diário.",
-    image: image("../images/stories/Twin_Turbo_vs_Naturally_Aspirated.jpg"),
+    image: image("../images/stories/track_vs_road.jpg"),
   },
 );
 

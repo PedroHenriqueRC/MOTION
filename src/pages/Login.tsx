@@ -31,7 +31,7 @@ export default function Login() {
   return (
     <div className="container section-space-large" style={{ maxWidth: 720, display: 'flex', flexDirection: 'column', alignItems: 'center' }} aria-label="Entrar">
       <h1 className="display" style={{display: 'flex',flexDirection: 'column',alignItems: 'center'}}>Entrar</h1>
-      <p className="muted">Entre com seu email e senha. Para demonstração use <strong>demo@motion.local</strong> / <strong>motion123</strong>.</p>
+      {/* <p className="muted">Entre com seu email e senha. Para demonstração use <strong>demo@motion.local</strong> / <strong>motion123</strong>.</p> */}
 
       <form onSubmit={onSubmit} style={{ marginTop: 18, minWidth: 360, display: 'flex', flexDirection: 'column' , alignItems: 'flex-start' }} noValidate>
         {error ? <div className="card error">{error}</div> : null}

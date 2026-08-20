@@ -75,7 +75,7 @@ export default function Collections(){
               <h2 className="card-title" style={{ fontSize: '1.6rem', color: 'black' }}>{featured.title}</h2>
               {featured.description ? <div className="muted card-description" style={{ marginTop: 8 }}>{featured.description}</div> : null}
               <div style={{ marginTop: 12 }}>
-                <Link to={`/collections/${featured.slug}`} className="meta motion-link">EXPLORAR COLEÇÃO →</Link>
+                <Link to={`/collections/${featured.slug}`} className="meta motion-link" style={{color: 'var(--color-shine)'}}>EXPLORAR COLEÇÃO →</Link>
               </div>
             </div>
           </div>

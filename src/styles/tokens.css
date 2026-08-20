@@ -7,7 +7,8 @@
   --color-text-primary: #F5F5F5;
   --color-text-secondary: #A0A0A0;
   --color-text-muted: rgb(102, 100, 100);
-  --color-shine: crimson;
+  --color-shine: crimson; 
+  /* --color-shine: #0082fb; */
 
   --color-border: #262626;
   --color-border-light: #333333;

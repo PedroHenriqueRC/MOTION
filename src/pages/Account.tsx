@@ -76,7 +76,7 @@ export default function Account() {
             {plan?.meta?.equivalentMonthly ? <div className="muted" style={{ marginTop: 6 }}>{plan.meta.equivalentMonthly} — <span className="muted">{plan.meta.savings}</span></div> : null}
             <div style={{ marginTop: 12 }}>
               {isFree ? (
-                <a href="/plans" className="garage-cta">CONHECER O MOTION+</a>
+                <a href="/plans" className="garage-cta" style={{color: 'var(--color-shine)'}}>CONHECER O MOTION+</a>
               ) : (
                 <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
                   <button onClick={() => setManageOpen(v => !v)} className="ui-retry-btn" style={{color: 'black'}}>GERENCIAR ASSINATURA</button>
@@ -145,7 +145,7 @@ export default function Account() {
             <div className="card" style={{ marginTop: 12, padding: 12 }}>
               <div style={{ fontWeight: 900 }}>DESBLOQUEIE O MOTION+</div>
               <div className="muted" style={{ marginTop: 8 }}>Acesse conteúdo premium, collections exclusivas e garage ilimitada.</div>
-              <div style={{ marginTop: 12 }}><a href="/plans" className="garage-cta">ASSINAR MOTION+</a></div>
+              <div style={{ marginTop: 12 }}><a href="/plans" className="garage-cta" style={{ color: 'var(--color-shine)' }}>ASSINAR MOTION+</a></div>
             </div>
           ) : null}
 

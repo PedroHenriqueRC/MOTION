@@ -61,9 +61,9 @@ export default function Register() {
   return (
     <div className="container section-space-large" style={{ maxWidth: 720, display: 'flex', flexDirection: 'column', alignItems: 'center' }} aria-label="Criar Conta">
       <h1 className="display">Criar Conta</h1>
-      <p className="muted">Preencha seus dados para criar uma conta MOTION.
+      {/* <p className="muted">Preencha seus dados para criar uma conta MOTION.
       {plan ? <span style={{ display: 'block', marginTop: 8 }}>Você está escolhendo: <strong>{plan.title}</strong> — <span className="muted">{plan.price}</span></span> : null}
-      </p>
+      </p> */}
 
       <form onSubmit={onSubmit} style={{ marginTop: 18, maxWidth: 640, display: 'flex',flexDirection: 'column', gap: 6, flexWrap: 'wrap' }} noValidate>
         {errors.form ? <div className="card error">{errors.form}</div> : null}
